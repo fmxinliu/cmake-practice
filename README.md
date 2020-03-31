@@ -50,3 +50,22 @@ T4/
      | -- Release/
           | -- demo.exe
 ```
+
+##### 任务5 ：生成多文件多目录工程（动态链接库），并更改可执行文件和库文件生成目录
+
+```
+T5/
+| -- build.bat
+| -- CMakeLists.txt
+| -- main.cpp
+| -- math
+     | -- CMakeLists.txt
+     | -- MathFunctions.cpp
+     | -- MathFunctions.h
+| -- build/
+     | -- bin/
+          | -- Release/
+               | -- demo.exe
+               | -- MathFunctions.dll
+               | -- MathFunctions.lib             
+```
