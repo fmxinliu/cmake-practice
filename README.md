@@ -30,3 +30,23 @@ T3/
      | -- MathFunctions.cpp
      | -- MathFunctions.h
 ```
+
+##### 任务4 ：生成多文件多目录工程（动态链接库）
+
+```
+T4/
+| -- build.bat
+| -- CMakeLists.txt
+| -- main.cpp
+| -- math
+     | -- CMakeLists.txt
+     | -- MathFunctions.cpp
+     | -- MathFunctions.h
+| -- build/
+     | -- math/
+          | -- Release/
+               | -- MathFunctions.dll
+               | -- MathFunctions.lib
+     | -- Release/
+          | -- demo.exe
+```
