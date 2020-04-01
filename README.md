@@ -69,3 +69,18 @@ T5/
                | -- MathFunctions.dll
                | -- MathFunctions.lib             
 ```
+
+##### 任务6 ：生成调用动态链接库的工程
+
+```
+T6/
+| -- build.bat
+| -- CMakeLists.txt
+| -- main.cpp
+| -- math
+     | -- include
+          | -- MathFunctions.h
+     | -- lib
+          | -- MathFunctions.dll
+          | -- MathFunctions.lib
+```
