@@ -108,3 +108,33 @@ T7/
           | -- hello.cpp
      | -- CMakeLists.txt
 ```
+
+##### 任务8 ：生成调用动态链接库+静态链接库的工程（多文件多目录）
+
+```
+T8/
+| -- build.bat
+| -- CMakeLists.txt
+| -- main.cpp
+| -- math
+     | -- include
+          | -- MathFunctions.h
+     | -- lib
+          | -- MathFunctions.dll
+          | -- MathFunctions.lib
+| -- util
+     | -- include
+          | -- bye
+               | -- bye.h
+          | -- hello
+               | -- hello.h
+     | -- src
+          | -- bye
+               | -- bye.cpp
+               | -- CMakeLists.txt
+          | -- hello
+               | -- CMakeLists.txt
+               | -- hello.cpp
+          | -- CMakeLists.txt
+     | -- CMakeLists.txt
+```
