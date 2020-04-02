@@ -1,140 +1,26 @@
-##### 任务1 ：生成单个源文件工程
+### C/C++ 编译规则文件
 
-```
-T1/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-```
+- C/C++ 程序写好之后，需要进行编译和链接，生成可执行文件，才能运行。
+- 为了完成编译和链接，编译器需要知道一些规则。比如要编译的文件有哪些，使用什么编译选项，编译的中间文件和生成的可执行文件输出到哪个目录，生成的可执行文件叫什么名字等等。
 
-##### 任务2 ：生成单目录多源文件工程
 
-```
-T2/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-| -- MathFunctions.cpp
-| -- MathFunctions.h
-```
+- 为了提供这些规则，需要一个*编译规则文件*，比如 `Makefile` 、微软的 `vcxproj`。
 
-##### 任务3 ：生成多文件多目录工程（静态链接库）
+### [CMake](https://baike.baidu.com/item/cmake/7138032?fr=aladdin) 编译配置工具
 
-```
-T3/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-| -- math
-     | -- CMakeLists.txt
-     | -- MathFunctions.cpp
-     | -- MathFunctions.h
-```
+- 当然，可以进行手动编写*编译规则文件*。但不同编译器，遵循着不同的规范和标准，*编译规则文件*的语法也千差万别。这样，就带来了一个严峻的问题：如果更换编译器，就要重新编写*编译规则文件* 。比如：
 
-##### 任务4 ：生成多文件多目录工程（动态链接库）
+  ​  ① 跨平台，为了保证软件能够在不同平台编译；
 
-```
-T4/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-| -- math
-     | -- CMakeLists.txt
-     | -- MathFunctions.cpp
-     | -- MathFunctions.h
-| -- build/
-     | -- math/
-          | -- Release/
-               | -- MathFunctions.dll
-               | -- MathFunctions.lib
-     | -- Release/
-          | -- demo.exe
-```
+  ​  ②  windows 平台，从 `MinGw` 编译器 →  `MSVC` 编译器。
 
-##### 任务5 ：生成多文件多目录工程（动态链接库），并更改可执行文件和库文件生成目录
+- 另一种，更简单的方法是：
 
-```
-T5/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-| -- math
-     | -- CMakeLists.txt
-     | -- MathFunctions.cpp
-     | -- MathFunctions.h
-| -- build/
-     | -- bin/
-          | -- Release/
-               | -- demo.exe
-               | -- MathFunctions.dll
-               | -- MathFunctions.lib             
-```
+  ​  ① 编写一种平台无关的 `CMakeLists.txt` 文件来定制编译流程；
 
-##### 任务6 ：生成调用动态链接库的工程
+  ​  ② 借助 `CMake` 工具，生成不同平台不同编译器，编译所需的 *编译规则文件* 。
 
-```
-T6/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-| -- math
-     | -- include
-          | -- MathFunctions.h
-     | -- lib
-          | -- MathFunctions.dll
-          | -- MathFunctions.lib
-```
+### Make [构建工具](https://www.cnblogs.com/feng9exe/p/9225723.html)
 
-##### 任务7 ：生成调用动态链接库+静态链接库的工程
-
-```
-T7/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-| -- math
-     | -- include
-          | -- MathFunctions.h
-     | -- lib
-          | -- MathFunctions.dll
-          | -- MathFunctions.lib
-| -- util
-     | -- include
-          | -- bye.h
-          | -- hello.h
-     | -- src
-          | -- bye.cpp
-          | -- CMakeLists.txt
-          | -- hello.cpp
-     | -- CMakeLists.txt
-```
-
-##### 任务8 ：生成调用动态链接库+静态链接库的工程（多文件多目录）
-
-```
-T8/
-| -- build.bat
-| -- CMakeLists.txt
-| -- main.cpp
-| -- math
-     | -- include
-          | -- MathFunctions.h
-     | -- lib
-          | -- MathFunctions.dll
-          | -- MathFunctions.lib
-| -- util
-     | -- include
-          | -- bye
-               | -- bye.h
-          | -- hello
-               | -- hello.h
-     | -- src
-          | -- bye
-               | -- bye.cpp
-               | -- CMakeLists.txt
-          | -- hello
-               | -- CMakeLists.txt
-               | -- hello.cpp
-          | -- CMakeLists.txt
-     | -- CMakeLists.txt
-```
+- 按照*编译规则文件*描述的规则，编译、链接源文件，生成可执行文件，部署安装。 
+- C/C++ 常用的 Make 工具，比如 [GNU Make](https://baike.baidu.com/item/make/17067703?fr=aladdin#1) ，QT 的 [qmake](http://qt-project.org/doc/qt-4.8/qmake-manual.html) ，微软的 [MS nmake](http://msdn.microsoft.com/en-us/library/ms930369.aspx) 。
