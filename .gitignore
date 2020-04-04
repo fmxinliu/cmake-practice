@@ -1,5 +1,6 @@
 # build directory
 build/
+build-for-*/
 
 # config source file
 config.h
