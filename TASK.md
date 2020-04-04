@@ -166,3 +166,23 @@ T9/
   Now we use the standard library.
   5 ^ 4 is 625
   ```
+
+##### 任务10 ：多编译器构建
+
+```
+T10/
+| -- CMakeLists.txt
+| -- main.cpp
+| -- build-scripts
+     | -- build-for-jom.bat
+     | -- build-for-mingw32-make.bat
+     | -- build-for-nmake.bat
+     | -- build-for-unix-make.bat
+     | -- build-for-vs2010.bat
+```
+
+* 生成 `vs2010` 工程文件，安装 [vs2010](https://msdn.itellyou.cn/) 。
+* 生成 `nmake` 构建规则的 `Makefile` 文件，安装 [vs2010](https://msdn.itellyou.cn/) 。
+* 生成 `jom` 多核构建规则的 `Makefile` 文件，安装 [vs2010](https://msdn.itellyou.cn/)、[qt](http://download.qt.io/archive/qt/) 。
+* 生成 `mingw` 多核构建规则的 `Makefile` 文件，安装 [mingw32-g++](https://mirrors.tuna.tsinghua.edu.cn/osdn/mingw/68260/mingw-get-setup.exe)、[mingw32-make](https://jaist.dl.sourceforge.net/project/mingw/MinGW/Extension/make/mingw32-make-3.80-3/mingw32-make-3.80.0-3.exe)。
+* 生成 `unix` 多核构建规则的 `Makefile` 文件，复制`mingw\bin`目录下的`mingw32-make.exe`，改名为`make.exe`。参考[windows+CMake+mingw 搭建c/c++开发环境](https://www.cnblogs.com/herelsp/p/8679200.html)。
