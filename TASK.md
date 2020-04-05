@@ -206,3 +206,12 @@ T11/
 * 指定 `MathFunctions.h` 的安装路径。
 * 指定 `demo` 的安装路径。
 * 指定安装根目录。
+
+##### 任务12 ：添加测试
+
+```
+T12/
+| -- CMakeLists.txt
+| -- main.cpp
+| -- build-for-unix-make/
+```
