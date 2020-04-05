@@ -186,3 +186,23 @@ T10/
 * 生成 `jom` 多核构建规则的 `Makefile` 文件，安装 [vs2010](https://msdn.itellyou.cn/)、[qt](http://download.qt.io/archive/qt/) 。
 * 生成 `mingw` 多核构建规则的 `Makefile` 文件，安装 [mingw32-g++](https://mirrors.tuna.tsinghua.edu.cn/osdn/mingw/68260/mingw-get-setup.exe)、[mingw32-make](https://jaist.dl.sourceforge.net/project/mingw/MinGW/Extension/make/mingw32-make-3.80-3/mingw32-make-3.80.0-3.exe)。
 * 生成 `unix` 多核构建规则的 `Makefile` 文件，复制`mingw\bin`目录下的`mingw32-make.exe`，改名为`make.exe`。参考[windows+CMake+mingw 搭建c/c++开发环境](https://www.cnblogs.com/herelsp/p/8679200.html)。
+
+##### 任务11 ：定制安装规则
+
+```
+T11/
+| -- CMakeLists.txt
+| -- main.cpp
+| -- build-for-unix-make/
+     | -- install/
+          | -- bin/
+               | -- demo.exe
+               | -- libMathFunctions.a
+          | -- include/
+               | -- MathFunctions.h   
+```
+
+* 指定 `MathFunctions` 库的安装路径。
+* 指定 `MathFunctions.h` 的安装路径。
+* 指定 `demo` 的安装路径。
+* 指定安装根目录。
