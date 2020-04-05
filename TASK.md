@@ -215,3 +215,31 @@ T12/
 | -- main.cpp
 | -- build-for-unix-make/
 ```
+
+##### 任务13 ：添加环境检查
+
+```
+T13/
+| -- build.bat
+| -- CMakeLists.txt
+| -- config.h.in  cmake配置项文件
+| -- main.cpp
+| -- math
+     | -- CMakeLists.txt
+     | -- MathFunctions.cpp
+     | -- MathFunctions.h
+```
+   
+- 如果系统支持`pow`函数，config.h 的内容为：`#define HAVE_POW`，运行结果为：
+
+  ```
+  Now we use the standard library.
+  5 ^ 4 is 625
+  ```
+  
+- 如果系统不支持`pow`函数，config.h 的内容为：`/* #undef HAVE_POW */`，运行结果为：
+ 
+  ```
+  Now we use our own Math library.
+  5 ^ 4 is 625
+  ```
