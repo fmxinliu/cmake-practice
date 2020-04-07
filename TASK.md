@@ -243,3 +243,17 @@ T13/
   Now we use our own Math library.
   5 ^ 4 is 625
   ```
+  
+##### 任务14 ：添加版本号
+
+```
+T14/
+| -- build.bat
+| -- CMakeLists.txt
+| -- config.h.in  cmake配置项文件
+| -- main.cpp
+```
+
+* 在顶层 `CMakeLists` 定义版本号变量。
+* 在 `config.h.in` 引用版本号变量，预定义宏。
+* 在 `main.cpp` 引用预定义宏。
