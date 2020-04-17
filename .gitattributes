@@ -1,0 +1,11 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Documents
+*.md        text
+*.txt       text
+*.h.in      text
+*.pdf       binary
+*.lib       binary
+*.dll       binary
+*.bat       text eol=crlf
