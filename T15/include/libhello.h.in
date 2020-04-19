@@ -1,0 +1,11 @@
+#ifndef LIBHELLO_H
+#define LIBHELLO_H
+#include <stdio.h>
+#include <dllexport.h>
+
+#define SAYHELLO_FUNC_DECLARATION \
+@DLL_STYLE@ DLL_API void @CALL_CONVENTIONS@ sayHello()
+
+SAYHELLO_FUNC_DECLARATION;
+
+#endif
