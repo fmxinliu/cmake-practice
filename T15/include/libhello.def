@@ -1,0 +1,6 @@
+; 导出库的名称
+LIBRARY
+
+; 导出函数列表
+EXPORTS
+    sayHello    @1

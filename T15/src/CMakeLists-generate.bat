@@ -8,6 +8,8 @@
 @rem 动态库生成参数
 @set DLL_STYLE=DLL_STYLE_VALUE
 @set CALL_CONVENTIONS=CALL_CONVENTIONS_VALUE
+@set DLL_EXPORTS=DLL_EXPORTS_VALUE
+@set DLL_EXPORTS_DEF_FILE=DLL_EXPORTS_DEF_FILE_VALUE
 
 @rem 临时文件
 @if exist %temp_path% @del %temp_path% /f /q
@@ -16,6 +18,12 @@
     @set s=%%i
     @set s=!s:%DLL_STYLE%=%1!
     @set s=!s:%CALL_CONVENTIONS%=%2!
+    @if %3==nopause @(
+      @set s=!s:%DLL_EXPORTS%=DLL_EXPORTS!
+    ) else (
+      @set s=!s:%DLL_EXPORTS%=%3!
+    )
+    @set s=!s:%DLL_EXPORTS_DEF_FILE%=%4!
     @echo !s!>>%temp_path%
 )
 
