@@ -1,5 +1,11 @@
+@ setlocal
+
+@rem 清除生成的头文件
+@ cd ../
+@ if exist include\libhello.h @ del include\libhello.h /f /q 
+
 @rem 构建编译目录
-@ rmdir build /Q /S
+@ rmdir build /q /s
 @ mkdir build
 @ cd build/
 

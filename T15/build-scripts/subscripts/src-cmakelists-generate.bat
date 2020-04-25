@@ -1,20 +1,20 @@
 @ setlocal enabledelayedexpansion
 
 @rem 参数解析
-@ if not x_%1==x_nopause @ set DLL_STYLE_VALUE=%1
-@ if not x_%2==x_nopause @ set DLL_CALL_CONVENTIONS_VALUE=%2
+@ if not x_%1==x_nopause @ set DLL_CALL_CONVENTIONS_VALUE=%1
+@ if not x_%2==x_nopause @ set DLL_STYLE_VALUE=%2
 @ if not x_%3==x_nopause @ set DLL_EXPORTS_VALUE=%3
 @ if not x_%4==x_nopause @ set DLL_EXPORTS_DEF_FILE_VALUE=%4
 
 @rem 参数检查
-@ if x%DLL_STYLE_VALUE%==x            @ set DLL_STYLE_VALUE=" "
-@ if x%DLL_CALL_CONVENTIONS_VALUE%==x @ set DLL_CALL_CONVENTIONS_VALUE=" "
+@ if x%DLL_CALL_CONVENTIONS_VALUE%==x @ set DLL_CALL_CONVENTIONS_VALUE=""
+@ if x%DLL_STYLE_VALUE%==x            @ set DLL_STYLE_VALUE=""
 @ if x%DLL_EXPORTS_VALUE%==x          @ set DLL_EXPORTS_VALUE=DLL_EXPORTS
-@ if x%DLL_EXPORTS_DEF_FILE_VALUE%==x @ set DLL_EXPORTS_DEF_FILE_VALUE=" "
+@ if x%DLL_EXPORTS_DEF_FILE_VALUE%==x @ set DLL_EXPORTS_DEF_FILE_VALUE=""
 
 @rem 文件路径
-@ set file_path=CMakeLists.txt
-@ set tmpl_path=CMakeLists.tmpl
+@ set file_path=..\src\CMakeLists.txt
+@ set tmpl_path=..\src\CMakeLists.tmpl
 
 @rem 动态库导出参数
 @ set DLL_CALL_CONVENTIONS=DLL_CALL_CONVENTIONS_DEFINE
