@@ -5,7 +5,7 @@ add_definitions(-D DLL_EXPORTS_DEFINE)
 
 # 链接文件
 if(MSVC)
-  set(LIB_LINKER_FILE DLL_EXPORTS_DEF_FILE_DEFINE)
+  set(LIB_LINKER_FILE ${PROJECT_SOURCE_DIR}/module/DLL_EXPORTS_DEF_FILE_DEFINE)
 endif(MSVC)
 
 # 查找当前目录下的所有源文件，保存到变量 DIR_LIB_SRCS

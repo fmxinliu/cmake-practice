@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 project(demo)
 
 # 添加头文件目录
-include_directories(include module)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # 添加 src 子目录（必须包含CMakeLists.txt）
 add_subdirectory(src)
