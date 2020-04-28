@@ -1,1 +1,1 @@
-@ call subscripts/libhello-export-style.bat __fastcall "extern \"C\""
+@ call subscripts/libhello-export-style.bat __fastcall "extern \"C\"" %1

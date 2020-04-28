@@ -1,1 +1,1 @@
-@ call subscripts/libhello-export-style.bat __fastcall
+@ call subscripts/libhello-export-style.bat __fastcall %1
