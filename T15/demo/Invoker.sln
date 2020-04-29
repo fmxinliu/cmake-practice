@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++", "C++\C++.vcxproj", "{EBEF412B-5721-491C-AF18-03C79AD10E17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -23,6 +25,16 @@ Global
 		{EBEF412B-5721-491C-AF18-03C79AD10E17}.Release|Win32.ActiveCfg = Release|Win32
 		{EBEF412B-5721-491C-AF18-03C79AD10E17}.Release|Win32.Build.0 = Release|Win32
 		{EBEF412B-5721-491C-AF18-03C79AD10E17}.Release|x86.ActiveCfg = Release|Win32
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Debug|Win32.ActiveCfg = Debug|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Debug|x86.ActiveCfg = Debug|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Debug|x86.Build.0 = Debug|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Release|Mixed Platforms.Build.0 = Release|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Release|Win32.ActiveCfg = Release|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Release|x86.ActiveCfg = Release|x86
+		{6FB61750-AF3E-4E06-92FD-3285E05B2DAC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
