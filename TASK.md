@@ -229,21 +229,21 @@ T13/
      | -- MathFunctions.cpp
      | -- MathFunctions.h
 ```
-   
+
 - 如果系统支持`pow`函数，config.h 的内容为：`#define HAVE_POW`，运行结果为：
 
   ```
   Now we use the standard library.
   5 ^ 4 is 625
   ```
-  
+
 - 如果系统不支持`pow`函数，config.h 的内容为：`/* #undef HAVE_POW */`，运行结果为：
- 
+
   ```
   Now we use our own Math library.
   5 ^ 4 is 625
   ```
-  
+
 ##### 任务14 ：添加版本号
 
 ```
@@ -257,3 +257,59 @@ T14/
 * 在顶层 `CMakeLists` 定义版本号变量。
 * 在 `config.h.in` 引用版本号变量，预定义宏。
 * 在 `main.cpp` 引用预定义宏。
+
+##### 任务15 ：windows 动态链接库导出方式对比
+
+```
+T15/
+| -- build-scripts
+     | -- defscripts
+          | -- style-for-cdecl.bat
+          | -- style-for-cdecl-c.bat
+          | -- style-for-fastcall.bat
+          | -- style-for-fastcall-c.bat
+          | -- style-for-stdcall.bat
+          | -- style-for-stdcall-c.bat
+     | -- subscripts
+          | -- libhello-build.bat
+          | -- libhello-export-style.bat
+          | -- src-cmakelists-generate.bat
+     | -- style-for-cdecl.bat
+     | -- style-for-cdecl-c.bat
+     | -- style-for-fastcall.bat
+     | -- style-for-fastcall-c.bat
+     | -- style-for-stdcall.bat
+     | -- style-for-stdcall-c.bat
+| -- demo
+     | -- C++/
+     | -- CSharp/
+     | -- dllstdcall
+          | -- libhello.dll
+     | -- .gitignore
+     | -- Invoker.sln
+| -- include
+     | -- dllexport.h
+     | -- libhello.h.in
+| -- module
+     | -- libhello.def
+| -- src
+     | -- CMakeLists.tmpl
+     | -- libhello.cpp
+| -- .gitignore
+| -- CMakeLists.txt
+| -- exports.bat
+| -- export-style-diff.md
+| -- export-style-diff.png
+| -- export-style-diff.vsd
+| -- main.cpp
+```
+
+* `build-scripts` → 动态库导出脚本。
+* `demo` → 提供 C/C++ 通过 dll 调用导出函数的简单例子。
+* `module` → def模块定义文件。
+* `exports.bat` → 按多种方式导出动态库。
+* `export-style-diff.md` → 不同方式导出的动态库对比。
+* `export-style-diff.png/export-style-diff.vsd` → __cdecl 调用规约下，动态库导出树形图。
+
+参考：
+* *[windows下dll导出函数的两种方式的比较](https://www.cnblogs.com/talenth/p/9585208.html)*
