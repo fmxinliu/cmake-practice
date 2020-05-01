@@ -313,3 +313,21 @@ T15/
 
 参考：
 * *[windows下dll导出函数的两种方式的比较](https://www.cnblogs.com/talenth/p/9585208.html)*
+
+##### 任务16 ：自定义模块
+
+```
+T16/
+| -- cmake
+     | -- FindHELLO.cmake
+| -- lib
+     | -- dllexport.h
+     | -- libhello.dll
+     | -- libhello.h
+     | -- libhello.lib
+| -- src
+     | -- CMakeLists.txt
+     | -- main.cpp
+| -- build.bat
+| -- CMakeLists.txt
+```
