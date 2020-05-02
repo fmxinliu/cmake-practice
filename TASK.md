@@ -362,9 +362,12 @@ T18/
      | -- libhello.h
 | -- src
      | -- CMakeLists.txt
-     | -- main.cpp
-| -- build.bat
+     | -- libhello.cpp
+| -- .gitignore
+| -- build-for-unix-make.bat
+| -- build-for-vs2010.bat
 | -- CMakeLists.txt
+| -- main.cpp
 ```
 
 参考：*[cmake cpack 安装打包程序](https://www.cnblogs.com/smallredness/p/10938194.html)*

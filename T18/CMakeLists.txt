@@ -17,7 +17,11 @@ add_executable(hello main.cpp)
 target_link_libraries(hello libhello)
 
 # 指定可执行文件生成目录
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+if(MSVC)
+    set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+else(MSVC)
+    set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+endif(MSVC)
 
 # 指定打包结构
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/vInstallCpack.cmake)

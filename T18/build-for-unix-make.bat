@@ -18,7 +18,7 @@
 
 @rem 测试
 @ cd ../bin
-@ copy ..\lib\liblibhello.dll .\ /Y > nul
+@ copy ..\lib\libhello.dll .\ /Y >nul
 @ hello.exe
 
 @rem 打包
