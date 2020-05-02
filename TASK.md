@@ -345,7 +345,8 @@ T17/
 | -- lib
      | -- libhello.dll
      | -- libhello.lib
-| -- build.bat
+| -- build-for-unix-make.bat
+| -- build-for-vs2010.bat
 | -- CMakeLists.txt
 ```
 

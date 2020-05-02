@@ -7,9 +7,6 @@
 @ cmake .. -G "Unix Makefiles" -DCMAKE_MAKE_PROGRAM=%MINGW_TOOLS%make.exe
 @ if not %errorlevel%==0 @ goto :end
 
-@rem 编译
-@ %MINGW_TOOLS%make.exe
-
 @rem 打包
 @ make package
 
