@@ -311,9 +311,7 @@ T15/
 * `export-style-diff.md` → 不同方式导出的动态库对比。
 * `export-style-diff.png/export-style-diff.vsd` → __cdecl 调用规约下，动态库导出树形图。
 
-参考：
-* *[windows下dll导出函数的两种方式的比较](https://www.cnblogs.com/talenth/p/9585208.html)*
-
+参考：*[windows下dll导出函数的两种方式的比较](https://www.cnblogs.com/talenth/p/9585208.html)*
 ##### 任务16 ：自定义模块
 
 ```
@@ -331,3 +329,27 @@ T16/
 | -- build.bat
 | -- CMakeLists.txt
 ```
+
+##### 任务17 ：生成安装包
+
+```
+T17/
+| -- bin
+     | -- hello.exe
+     | -- libhello.dll
+| -- cmake
+     | -- vInstallCpack.cmake
+| -- include
+     | -- dllexport.h
+     | -- libhello.h
+| -- lib
+     | -- libhello.dll
+     | -- libhello.lib
+| -- src
+     | -- CMakeLists.txt
+     | -- main.cpp
+| -- build.bat
+| -- CMakeLists.txt
+```
+
+参考：*[cpack打包生成安装包](https://blog.csdn.net/chengde6896383/article/details/80942906)*
