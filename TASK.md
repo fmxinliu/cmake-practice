@@ -345,6 +345,21 @@ T17/
 | -- lib
      | -- libhello.dll
      | -- libhello.lib
+| -- build.bat
+| -- CMakeLists.txt
+```
+
+参考：*[cpack打包生成安装包](https://blog.csdn.net/chengde6896383/article/details/80942906)*
+
+##### 任务18 ：编译-部署-打包，生成安装包
+
+```
+T18/
+| -- cmake
+     | -- vInstallCpack.cmake
+| -- include
+     | -- dllexport.h
+     | -- libhello.h
 | -- src
      | -- CMakeLists.txt
      | -- main.cpp
@@ -352,4 +367,4 @@ T17/
 | -- CMakeLists.txt
 ```
 
-参考：*[cpack打包生成安装包](https://blog.csdn.net/chengde6896383/article/details/80942906)*
+参考：*[cmake cpack 安装打包程序](https://www.cnblogs.com/smallredness/p/10938194.html)*
