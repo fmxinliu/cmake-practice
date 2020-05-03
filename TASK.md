@@ -1,3 +1,5 @@
+#### [**CMake 入门实战**](http://hahack.com/codes/cmake) | [**CMake高级用法**](https://haoqchen.site/2019/02/26/cmake-advance-usage/)
+
 ##### 任务1 ：生成单个源文件工程
 
 ```
@@ -312,6 +314,7 @@ T15/
 * `export-style-diff.png/export-style-diff.vsd` → __cdecl 调用规约下，动态库导出树形图。
 
 参考：*[windows下dll导出函数的两种方式的比较](https://www.cnblogs.com/talenth/p/9585208.html)*
+
 ##### 任务16 ：自定义模块
 
 ```
