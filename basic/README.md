@@ -4,7 +4,7 @@
 
 ```
 T01
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  └── main.cpp
 ```
@@ -13,7 +13,7 @@ T01
 
 ```
 T02
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  ├── main.cpp
  ├── MathFunctions.cpp
@@ -24,59 +24,67 @@ T02
 
 ```
 T03
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  ├── main.cpp
- └── math
-      ├── CMakeLists.txt
-      ├── MathFunctions.cpp
-      └── MathFunctions.h
+ ├── math
+ │    ├── CMakeLists.txt
+ │    ├── MathFunctions.cpp
+ │    └── MathFunctions.h
+ └── build*
+      ├── math
+      │    └── Release
+      │         └── MathFunctions.lib
+      └── Release
+           └── demo.exe
+      
 ```
 
 ##### 任务4 ：生成多文件多目录工程（动态链接库）
 
 ```
 T04
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  ├── main.cpp
  ├── math
  │    ├── CMakeLists.txt
  │    ├── MathFunctions.cpp
  │    └── MathFunctions.h
- └── build
+ └── build*
       ├── math
       │    └── Release
       │         ├── MathFunctions.dll
       │         └── MathFunctions.lib
       └── Release
-           └── demo.exe
+           ├── demo.exe
+           └── MathFunctions.dll (copy)
 ```
 
 ##### 任务5 ：生成多文件多目录工程（动态链接库），并更改可执行文件和库文件生成目录
 
 ```
 T05
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  ├── main.cpp
  ├── math
  │    ├── CMakeLists.txt
  │    ├── MathFunctions.cpp
  │    └── MathFunctions.h
- └── build
+ └── build*
       └── bin
            └── Release
                 ├── demo.exe
                 ├── MathFunctions.dll
-                └── MathFunctions.lib             
+                └── MathFunctions.lib
 ```
 
 ##### 任务6 ：生成调用动态链接库的工程
 
 ```
 T06
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  ├── main.cpp
  └── math
@@ -91,7 +99,7 @@ T06
 
 ```
 T07
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  ├── main.cpp
  ├── math
@@ -115,7 +123,7 @@ T07
 
 ```
 T08
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  ├── main.cpp
  ├── math
@@ -145,9 +153,9 @@ T08
 
 ```
 T09
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
- ├── config.h.in  cmake配置项文件
+ ├── config.h.in  (cmake配置项文件)
  ├── main.cpp
  └── math
       ├── CMakeLists.txt
@@ -176,26 +184,27 @@ T10
  ├── CMakeLists.txt
  ├── main.cpp
  └── build-scripts
-      ├── build-for-jom.bat
-      ├── build-for-mingw32-make.bat
-      ├── build-for-nmake.bat
-      ├── build-for-unix-make.bat
-      └── build-for-vs2010.bat
+      ├── build_jom.bat
+      ├── build_mingw32.bat
+      ├── build_nmake.bat
+      ├── build_unix.sh
+      └── build_vs.bat
 ```
 
-* 生成 `vs2010` 工程文件，安装 [vs2010](https://msdn.itellyou.cn/) 。
-* 生成 `nmake` 构建规则的 `Makefile` 文件，安装 [vs2010](https://msdn.itellyou.cn/) 。
-* 生成 `jom` 多核构建规则的 `Makefile` 文件，安装 [vs2010](https://msdn.itellyou.cn/)、[qt](http://download.qt.io/archive/qt/) 。
+* 生成 `vs` 工程文件，安装 [vs](https://msdn.itellyou.cn/) 。
+* 生成 `nmake` 构建规则的 `Makefile` 文件，安装 [vs](https://msdn.itellyou.cn/) 。
+* 生成 `jom` 多核构建规则的 `Makefile` 文件，安装 [vs](https://msdn.itellyou.cn/)、[qt](http://download.qt.io/archive/qt/) 。
 * 生成 `mingw` 多核构建规则的 `Makefile` 文件，安装 [mingw32-g++](https://mirrors.tuna.tsinghua.edu.cn/osdn/mingw/68260/mingw-get-setup.exe)、[mingw32-make](https://jaist.dl.sourceforge.net/project/mingw/MinGW/Extension/make/mingw32-make-3.80-3/mingw32-make-3.80.0-3.exe)。
-* 生成 `unix` 多核构建规则的 `Makefile` 文件，复制`mingw\bin`目录下的`mingw32-make.exe`，改名为`make.exe`。参考[windows+CMake+mingw 搭建c/c++开发环境](https://www.cnblogs.com/herelsp/p/8679200.html)。
+* 生成 `unix` 构建规则的 `Makefile` 文件。
 
 ##### 任务11 ：定制安装规则
 
 ```
 T11
+ ├── build_mingw32.bat
  ├── CMakeLists.txt
  ├── main.cpp
- └── build-for-unix-make
+ └── build*
       └── install
            ├── bin
            │    ├── demo.exe
@@ -213,18 +222,18 @@ T11
 
 ```
 T12
+ ├── build_mingw32.bat
  ├── CMakeLists.txt
- ├── main.cpp
- └── build-for-unix-make/
+ └── main.cpp
 ```
 
 ##### 任务13 ：添加环境检查
 
 ```
 T13
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
- ├── config.h.in  cmake配置项文件
+ ├── config.h.in  (cmake配置项文件)
  ├── main.cpp
  └── math
       ├── CMakeLists.txt
@@ -250,9 +259,9 @@ T13
 
 ```
 T14
- ├── build.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
- ├── config.h.in  cmake配置项文件
+ ├── config.h.in  (cmake配置项文件)
  └── main.cpp
 ```
 
@@ -329,7 +338,7 @@ T16
  ├── src
  │    ├── CMakeLists.txt
  │    └── main.cpp
- ├── build.bat
+ ├── build_vs.bat
  └── CMakeLists.txt
 ```
 
@@ -348,8 +357,8 @@ T17
  ├── lib
  │    ├── libhello.dll
  │    └── libhello.lib
- ├── build-for-unix-make.bat
- ├── build-for-vs2010.bat
+ ├── build_mingw32.bat
+ ├── build_vs.bat
  └── CMakeLists.txt
 ```
 
@@ -368,8 +377,8 @@ T18
  │    ├── CMakeLists.txt
  │    └── libhello.cpp
  ├── .gitignore
- ├── build-for-unix-make.bat
- ├── build-for-vs2010.bat
+ ├── build_mingw32.bat
+ ├── build_vs.bat
  ├── CMakeLists.txt
  └── main.cpp
 ```

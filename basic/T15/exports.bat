@@ -1,7 +1,12 @@
-@setlocal enabledelayedexpansion
+@ setlocal enabledelayedexpansion
+@ setlocal & cd /d %~dp0
+
+@rem 加载Build配置
+@ call ..\BuildConfig.bat
+@ if !errorlevel! neq 0 @ goto :end
 
 @rem 编译导出
-@ rmdir exports /q /s
+@ if exist exports @ rmdir exports /q /s
 @ set root_path=!cd!\
 @ set build_path=!root_path!build-scripts\
 @ set lib_path=!root_path!build\bin\Release\
@@ -10,6 +15,9 @@
 @ call :export !build_path!
 @ call :export !build_path!\defscripts\ def-
 
+:end
+@ endlocal
+@ setlocal disabledelayedexpansion
 @ if not "%1"=="nopause" @ pause
 @ goto :eof
 
@@ -30,5 +38,5 @@
     xcopy !lib_path!libhello.* !export_path!!dir_name!\
     
     rem 查看动态库
-    "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64\dumpbin.exe" /exports !export_path!!dir_name!\libhello.dll > !export_path!!file_name!
+    "%dumpbin_exe%" /exports !export_path!!dir_name!\libhello.dll > !export_path!!file_name!
 )

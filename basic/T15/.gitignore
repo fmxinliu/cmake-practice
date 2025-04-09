@@ -4,3 +4,6 @@ src/CMakeLists.txt
 
 # temp directory
 exports/
+
+# build directory
+build/

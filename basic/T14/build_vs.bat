@@ -1,19 +1,16 @@
-@ setlocal
-
-@rem 清除生成的头文件
-@ cd ../
-@ if exist include\libhello.h @ del include\libhello.h /f /q
+@ setlocal & cd /d %~dp0
 
 @rem 构建编译目录
-@ if exist build @ rmdir build /q /s
+@ if exist config.h @ del config.h /Q /F
+@ if exist build @ rmdir build /Q /S
 @ mkdir build
-@ cd build/
+@ cd build
 
 @rem 加载Build配置
 @ call ..\..\BuildConfig.bat
 @ if %errorlevel% neq 0 @ goto :end
 
-@rem 根据CMakeList.txt文件，生成平台相关的Makefile或工程文件
+@rem 生成VS工程
 @ "%cmake_exe%" .. -G %vs_generators%
 @ if %errorlevel% neq 0 @ goto :end
 
@@ -22,8 +19,8 @@
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行
-@ cd bin/Release/
-@ hello.exe
+@ cd Release
+@ demo.exe 5 4
 
 :end
-@ if not "%1"=="nopause" @ pause
+@ pause & endlocal

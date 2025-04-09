@@ -1,9 +1,12 @@
 # build directory
 build/
-build-for-*/
+build_*/
 
 # config source file
 config.h
 
 # packages
 *.zip
+
+# vs tmp dir
+.vs/

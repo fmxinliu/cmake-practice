@@ -9,3 +9,4 @@
 *.lib       binary
 *.dll       binary
 *.bat       text eol=crlf
+*.sh        text eol=lf
