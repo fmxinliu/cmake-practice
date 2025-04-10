@@ -20,11 +20,11 @@ endif(HELLO_INCLUDE_DIR AND HELLO_LIBRARY)
 
 # 查找结果
 if(HELLO_FOUND)
-    if(NOT HELLO_FIND_QUIETLY)
+    if(NOT HELLO_FIND_QUIETLY) #find_package(HELLO QUIET)
         message(STATUS "Found Hello: ${HELLO_LIBRARY}") # lib
     endif(NOT HELLO_FIND_QUIETLY)
 else(HELLO_FOUND)
-    if(HELLO_FIND_REQUIRED)
+    if(HELLO_FIND_REQUIRED) # find_package(HELLO REQUIRED)
         message(FATAL_ERROR "Could not find hello library") # 终止cmake
     endif(HELLO_FIND_REQUIRED)
 endif(HELLO_FOUND)

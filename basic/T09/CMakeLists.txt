@@ -27,6 +27,6 @@ aux_source_directory(. DIR_SRCS)
 add_executable(${PROJECT_NAME} ${DIR_SRCS})
 
 # (4)添加链接库
-if(NOT HAVE_POW)
+if(USE_MYMATH)
   target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
 endif()

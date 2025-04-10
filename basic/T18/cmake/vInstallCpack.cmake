@@ -3,11 +3,12 @@ install(DIRECTORY include lib bin DESTINATION ..)
 
 # 当前时间
 string(TIMESTAMP vTimeStamp "%Y%m%d%H%M%S")
+message(STATUS "currentTime: ${vTimeStamp}")
 
 # 当前分支
 execute_process(
     COMMAND git rev-parse --abbrev-ref HEAD
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE vGitBranch
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
@@ -15,7 +16,7 @@ execute_process(
 # 最后一笔提交
 execute_process(
     COMMAND git log -1 --format=%h
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE vGitCommit
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
@@ -39,7 +40,7 @@ set(CPACK_SET_DESTDIR true)
 set(CPACK_INSTALL_PREFIX "include")
 
 # 设置安装包生成的位置
-set(CPACK_OUTPUT_FILE_PREFIX ${CMAKE_CURRENT_SOURCE_DIR})
+set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR})
 
 # 设置维护者信息
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "fmxinliu")
