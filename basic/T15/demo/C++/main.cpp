@@ -4,10 +4,10 @@
 
 int main()
 {
-    // __stdcall ���ù�Լ
+    // __stdcall 调用规约
     typedef void (__stdcall *pfunc)(void);
 
-    // ���ض�̬��
+    // 加载动态库
     HMODULE hModule = LoadLibrary(_T("../../dllstdcall/libhello.dll"));
     if (NULL == hModule)
     {
@@ -15,7 +15,7 @@ int main()
         return -1;
     }
 
-    // ��ȡ������������ڵ�ַ
+    // 获取导出函数的入口地址
     pfunc pf = (pfunc)GetProcAddress(hModule, "sayHello");
     if (NULL == pf)
     {
@@ -23,10 +23,10 @@ int main()
         return -2;
     }
 
-    // ����
+    // 调用
     pf();
 
-    // ж�ض�̬��
+    // 卸载动态库
     BOOL ret = FreeLibrary(hModule);
     if (FALSE == ret)
     {

@@ -1,4 +1,4 @@
-﻿# 预定义宏 
+# 预定义宏 
 add_definitions(-D DLL_EXPORTS) 
   
 # 生成链接库 
