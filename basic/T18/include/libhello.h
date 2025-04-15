@@ -4,7 +4,7 @@
 #include "dllexport.h"
 
 #define SAYHELLO_FUNC_DECLARATION \
-extern "C" DLL_API void __stdcall sayHello()
+DLL_STYLE DLL_API void DLL_CALL_CONVENTIONS sayHello()
 
 SAYHELLO_FUNC_DECLARATION;
 
