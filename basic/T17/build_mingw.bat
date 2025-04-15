@@ -1,9 +1,9 @@
 @ setlocal & cd /d %~dp0
 
 @rem 构建编译目录
-@ if exist build_unix @ rmdir build_unix /Q /S
-@ mkdir build_unix
-@ cd build_unix
+@ if exist build_mingw @ rmdir build_mingw /Q /S
+@ mkdir build_mingw
+@ cd build_mingw
 
 @rem 加载Build配置
 @ call ..\..\BuildConfig.bat

@@ -185,7 +185,7 @@ T10
  ├── main.cpp
  └── build-scripts
       ├── build_jom.bat
-      ├── build_mingw32.bat
+      ├── build_mingw.bat
       ├── build_nmake.bat
       ├── build_unix.sh
       └── build_vs.bat
@@ -194,14 +194,14 @@ T10
 * 生成 `vs` 工程文件，安装 [vs](https://msdn.itellyou.cn/) 。
 * 生成 `nmake` 构建规则的 `Makefile` 文件，安装 [vs](https://msdn.itellyou.cn/) 。
 * 生成 `jom` 多核构建规则的 `Makefile` 文件，安装 [vs](https://msdn.itellyou.cn/)、[qt](http://download.qt.io/archive/qt/) 。
-* 生成 `mingw` 多核构建规则的 `Makefile` 文件，安装 [mingw32-g++](https://mirrors.tuna.tsinghua.edu.cn/osdn/mingw/68260/mingw-get-setup.exe)、[mingw32-make](https://jaist.dl.sourceforge.net/project/mingw/MinGW/Extension/make/mingw32-make-3.80-3/mingw32-make-3.80.0-3.exe)。
+* 生成 `mingw` 多核构建规则的 `Makefile` 文件，安装 [mingw32](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/)或[mingw64](https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/)。
 * 生成 `unix` 构建规则的 `Makefile` 文件。
 
 ##### 任务11 ：定制安装规则
 
 ```
 T11
- ├── build_mingw32.bat
+ ├── build_mingw.bat
  ├── CMakeLists.txt
  ├── main.cpp
  └── build*
@@ -222,7 +222,7 @@ T11
 
 ```
 T12
- ├── build_mingw32.bat
+ ├── build_mingw.bat
  ├── CMakeLists.txt
  └── main.cpp
 ```
@@ -357,7 +357,7 @@ T17
  ├── lib
  │    ├── libhello.dll
  │    └── libhello.lib
- ├── build_mingw32.bat
+ ├── build_mingw.bat
  ├── build_vs.bat
  └── CMakeLists.txt
 ```
@@ -377,7 +377,7 @@ T18
  │    ├── CMakeLists.txt
  │    └── libhello.cpp
  ├── .gitignore
- ├── build_mingw32.bat
+ ├── build_mingw.bat
  ├── build_vs.bat
  ├── CMakeLists.txt
  └── main.cpp

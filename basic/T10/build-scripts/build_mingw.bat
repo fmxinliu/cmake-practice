@@ -1,9 +1,9 @@
 @ setlocal & cd /d %~dp0
 
 @rem 构建编译目录
-@ if exist build_mingw32 @ rmdir build_mingw32 /Q /S
-@ mkdir build_mingw32
-@ cd build_mingw32
+@ if exist build_mingw @ rmdir build_mingw /Q /S
+@ mkdir build_mingw
+@ cd build_mingw
 
 @rem 加载Build配置
 @ call ..\..\..\BuildConfig.bat

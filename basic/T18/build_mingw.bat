@@ -6,9 +6,9 @@
 @ if exist *.zip @ del *.zip /Q /F
 
 @rem 构建编译目录
-@ if exist build_unix @ rmdir build_unix /Q /S
-@ mkdir build_unix
-@ cd build_unix/
+@ if exist build_mingw @ rmdir build_mingw /Q /S
+@ mkdir build_mingw
+@ cd build_mingw
 
 @rem 加载Build配置
 @ call ..\..\BuildConfig.bat
@@ -28,7 +28,7 @@
 @ hello.exe
 
 @rem 打包
-@ cd ..\build_unix
+@ cd ..\build_mingw
 @ %make_exe% package
 
 :end
