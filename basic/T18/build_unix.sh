@@ -18,8 +18,24 @@ cmake .. -G "Unix Makefiles" || exit
 # 编译
 make || exit
 
-# 运行
-cd ../bin && ./hello
+# 测试
+## 1.将 bin 和 lib 移动到 test 目录下
+cd .. && [ -d "test" ] && rm -rf test
+mkdir test
+mv bin test
+mv lib test
+
+## 2.执行程序
+if ./test/bin/hello; then
+    readelf -d test/bin/hello | grep RUNPATH
+else
+    ldd test/bin/hello
+    exit 1
+fi
+
+## 3.恢复 bin 和 lib 目录
+mv test/bin .
+mv test/lib .
 
 # 打包
-cd ../build_unix && make package
+cd build_unix && make package

@@ -389,4 +389,10 @@ T18
  └── main.cpp
 ```
 
-参考：*[cmake cpack 安装打包程序](https://www.cnblogs.com/smallredness/p/10938194.html)*
+参考：
+
+*[cmake cpack 安装打包程序](https://www.cnblogs.com/smallredness/p/10938194.html)*
+
+*[linux cmake分别指定编译/运行时动态库链接路径](https://blog.csdn.net/JCYAO_/article/details/102519998)*
+
+*[linux cmake相对路径载入so文件和rpath](https://blog.csdn.net/weixin_38693938/article/details/113399924)*

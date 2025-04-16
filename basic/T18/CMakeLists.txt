@@ -16,6 +16,12 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # 添加 src 子目录（必须包含CMakeLists.txt）
 add_subdirectory(src)
 
+# 设置rpath（必须在 add_executable 前指定）
+if(BUILD_SHARED_LIBS)
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+    set(CMAKE_INSTALL_RPATH "\${ORIGIN}/../lib")
+endif()
+
 # 指定生成目标
 add_executable(hello main.cpp)
 
