@@ -10,31 +10,34 @@
 #endif
 
 
-/* 定义导出/导入宏 */
+/* 定义导出 & 导入宏 */
 #if defined(LIBRARY_SHARED) // 生成动态库
-   #if defined(LIBRARY_COMPILER_MSVC)
-       #if defined(LIBRARY_EXPORTS)
-           #define LIBRARY_API __declspec(dllexport)
-           #define LIBRARY_API_P
-       #else
-           #define LIBRARY_API __declspec(dllimport)
-           #define LIBRARY_API_P
-       #endif
-   #elif defined(LIBRARY_COMPILER_GCC)
-       #if __GNUC__ >= 4
-           #define LIBRARY_API __attribute__((visibility ("default")))
-           #define LIBRARY_API_P __attribute__((visibility ("hidden")))
-       #else
-           #define LIBRARY_API
-           #define LIBRARY_API_P
-       #endif
-   #else
-       #define LIBRARY_API
-       #define LIBRARY_API_P
-   #endif
+    #if defined(LIBRARY_COMPILER_MSVC)
+        #if defined (DLL_EXPORTS_USE_DEF_FILE) // 使用def模块定义文件导出
+            #define DLL_API
+            #define LIBRARY_API_P
+        #elif defined(LIBRARY_EXPORTS)
+            #define LIBRARY_API __declspec(dllexport)
+            #define LIBRARY_API_P
+        #else
+            #define LIBRARY_API __declspec(dllimport)
+            #define LIBRARY_API_P
+        #endif
+    #elif defined(LIBRARY_COMPILER_GCC)
+        #if __GNUC__ >= 4
+            #define LIBRARY_API __attribute__((visibility ("default")))
+            #define LIBRARY_API_P __attribute__((visibility ("hidden")))
+        #else
+            #define LIBRARY_API
+            #define LIBRARY_API_P
+        #endif
+    #else
+        #define LIBRARY_API
+        #define LIBRARY_API_P
+    #endif
 #else // 生成静态库
-   #define LIBRARY_API
-   #define LIBRARY_API_P
+    #define LIBRARY_API
+    #define LIBRARY_API_P
 #endif
 
 
