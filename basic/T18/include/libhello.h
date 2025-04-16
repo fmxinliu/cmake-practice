@@ -1,11 +1,7 @@
 #ifndef LIBHELLO_H
 #define LIBHELLO_H
-#include <stdio.h>
-#include "dllexport.h"
 
-#define SAYHELLO_FUNC_DECLARATION \
-DLL_STYLE DLL_API void DLL_CALL_CONVENTIONS sayHello()
-
-SAYHELLO_FUNC_DECLARATION;
+#include "hello.h"
+#include "person.h"
 
 #endif

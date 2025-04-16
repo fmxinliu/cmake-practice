@@ -1,8 +1,11 @@
-# 预定义宏 
-add_definitions(-D DLL_EXPORTS) 
-  
-# 生成链接库 
-add_library(libhello SHARED libhello.cpp) # 动态 
+# 预定义宏
+if(BUILD_SHARED_LIBS)
+    add_definitions(-D LIBRARY_EXPORTS)
+    set(LIB_TYPE "SHARED")
+endif()
+
+# 生成链接库
+add_library(libhello ${LIB_TYPE} hello.cpp person.cpp)
 
 if(MSVC)
     set(LIB_NAME "libhello")

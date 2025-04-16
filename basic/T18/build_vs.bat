@@ -24,8 +24,8 @@
 
 @rem 部署
 @ xcopy Release\libhello.lib ..\lib\ /V /C /I /R /K /Y >nul
-@ xcopy Release\libhello.dll ..\lib\ /V /C /I /R /K /Y >nul
-@ xcopy Release\libhello.dll ..\bin\ /V /C /I /R /K /Y >nul
+@ xcopy Release\libhello.dll ..\lib\ /V /C /I /R /K /Y >nul 2>nul
+@ xcopy Release\libhello.dll ..\bin\ /V /C /I /R /K /Y >nul 2>nul
 @ xcopy Release\hello.exe    ..\bin\ /V /C /I /R /K /Y >nul
 
 @rem 测试

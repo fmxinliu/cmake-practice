@@ -372,10 +372,15 @@ T18
  │    └── vInstallCpack.cmake
  ├── include
  │    ├── dllexport.h
- │    └── libhello.h
+ │    ├── hello.h
+ │    ├── libhello.h
+ │    ├── libraryexport.h
+ │    └── person.h
  ├── src
  │    ├── CMakeLists.txt
- │    └── libhello.cpp
+ │    ├── hello.cpp
+ │    ├── libhello.cpp
+ │    └── person.cpp
  ├── .gitignore
  ├── build_mingw.bat
  ├── build_unix.sh

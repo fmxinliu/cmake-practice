@@ -4,6 +4,12 @@ cmake_minimum_required(VERSION 3.0)
 # 项目名称
 project(hello)
 
+# 选择生成共享/静态库
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+if(BUILD_SHARED_LIBS)
+    add_definitions(-D LIBRARY_SHARED)
+endif()
+
 # 添加头文件目录
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
