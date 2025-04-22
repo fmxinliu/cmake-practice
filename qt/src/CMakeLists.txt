@@ -4,6 +4,9 @@ set(SRC_FILES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    login.cpp
+    login.h
+    login.ui
 )
 
 # 生成可执行文件
