@@ -7,8 +7,6 @@ namespace Ui {
 class Login;
 }
 
-class ConfigSaver;
-
 class Login : public QWidget
 {
     Q_OBJECT
@@ -25,10 +23,11 @@ private Q_SLOTS:
     void onLogin();
     void onExit();
     void onEdit();
+    void onRegister();
+    void onForgetPassword();
 
 private:
     Ui::Login *ui;
-    ConfigSaver *m_userconfig;
 };
 
 #endif // LOGIN_H

@@ -1,7 +1,9 @@
 #include "login.h"
 #include "ui_login.h"
 #include <QDebug>
-#include "configsaver.h"
+#include "usermanager.h"
+#include "adduser.h"
+#include "modifyuser.h"
 
 Login::Login(QWidget *parent)
     : QWidget(parent)
@@ -9,14 +11,15 @@ Login::Login(QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_userconfig = new ConfigSaver("config.ini", "users");
-    m_userconfig->save("admin", "admin");
-    m_userconfig->save("user", "123");
+    // 禁用最大化按钮
+    setWindowFlag(Qt::WindowMaximizeButtonHint, false);
+
+    // 禁用调整窗口大小
+    setWindowFlag(Qt::MSWindowsFixedSizeDialogHint, true);
 }
 
 Login::~Login()
 {
-    delete m_userconfig;
     delete ui;
 }
 
@@ -33,9 +36,9 @@ void Login::onLogin()
         return;
     }
 
-    if (m_userconfig->load(username) == password)
+    if (UserManager::instance()->login(username, password))
     {
-        hide();
+        close();
         Q_EMIT login();
     }
     else
@@ -54,3 +57,22 @@ void Login::onEdit()
 {
     ui->lblMessage->clear();
 }
+
+void Login::onRegister()
+{
+    qDebug() << "Button(Register) clicked";
+    hide();
+    AddUser dialog;
+    dialog.exec();
+    show();
+}
+
+void Login::onForgetPassword()
+{
+    qDebug() << "Button(Forget) clicked";
+    hide();
+    ModifyUser dialog;
+    dialog.exec();
+    show();
+}
+

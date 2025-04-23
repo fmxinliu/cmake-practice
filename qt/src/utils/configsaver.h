@@ -12,6 +12,8 @@ public:
     void save(const QString &key, const QString &value);
     QString load(const QString &key);
 
+    bool hasKey(const QString &key);
+
 private:
     QString m_section;
     QString m_filepath;

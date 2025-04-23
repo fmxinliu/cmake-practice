@@ -15,11 +15,21 @@ ConfigSaver::~ConfigSaver()
 void ConfigSaver::save(const QString &key, const QString &value)
 {
     QSettings iniAccess(m_filepath, QSettings::IniFormat);
-    iniAccess.setValue(m_section + "/" + key, value);
+    QString v = iniAccess.value(m_section + "/" + key).toString();
+    if (v != value)
+    {
+        iniAccess.setValue(m_section + "/" + key, value);
+    }
 }
 
 QString ConfigSaver::load(const QString &key)
 {
     QSettings iniAccess(m_filepath, QSettings::IniFormat);
     return iniAccess.value(m_section + "/" + key).toString();
+}
+
+bool ConfigSaver::hasKey(const QString &key)
+{
+    QSettings iniAccess(m_filepath, QSettings::IniFormat);
+    return iniAccess.contains(m_section + "/" + key);
 }
