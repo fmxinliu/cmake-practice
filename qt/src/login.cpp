@@ -1,16 +1,22 @@
 #include "login.h"
 #include "ui_login.h"
 #include <QDebug>
+#include "configsaver.h"
 
 Login::Login(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Login)
 {
     ui->setupUi(this);
+
+    m_userconfig = new ConfigSaver("config.ini", "users");
+    m_userconfig->save("admin", "admin");
+    m_userconfig->save("user", "123");
 }
 
 Login::~Login()
 {
+    delete m_userconfig;
     delete ui;
 }
 
@@ -27,7 +33,7 @@ void Login::onLogin()
         return;
     }
 
-    if (username == "admin" && password == "admin")
+    if (m_userconfig->load(username) == password)
     {
         hide();
         Q_EMIT login();

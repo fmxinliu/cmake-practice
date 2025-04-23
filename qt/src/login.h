@@ -7,6 +7,8 @@ namespace Ui {
 class Login;
 }
 
+class ConfigSaver;
+
 class Login : public QWidget
 {
     Q_OBJECT
@@ -26,6 +28,7 @@ private Q_SLOTS:
 
 private:
     Ui::Login *ui;
+    ConfigSaver *m_userconfig;
 };
 
 #endif // LOGIN_H
