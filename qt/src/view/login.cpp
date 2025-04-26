@@ -32,7 +32,7 @@ void Login::onLogin()
 
     if (username.isEmpty() || password.isEmpty())
     {
-        ui->lblMessage->setText("Please input username and password");
+        ui->lblMessage->setText(tr("Please input username and password"));
         return;
     }
 
@@ -43,7 +43,7 @@ void Login::onLogin()
     }
     else
     {
-        ui->lblMessage->setText("Username or Password is incorrect");
+        ui->lblMessage->setText(tr("Username or Password is incorrect"));
     }
 }
 

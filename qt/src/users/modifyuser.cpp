@@ -32,7 +32,7 @@ void ModifyUser::onModifyUser()
     {
         ui->leUsername->setFocus();
         ui->leUsername->selectAll();
-        ui->lblMessage->setText("The user not found");
+        ui->lblMessage->setText(tr("The user not found"));
         return;
     }
 
@@ -46,7 +46,7 @@ void ModifyUser::onModifyUser()
     }
 
     UserManager::instance()->modifyUser(username, password);
-    QMessageBox::information(this, "User", "Modify Success");
+    QMessageBox::information(this, tr("User"), tr("Modify Success"));
 
     ui->leUsername->clear();
     ui->lePassword->clear();

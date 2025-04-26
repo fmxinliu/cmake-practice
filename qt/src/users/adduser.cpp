@@ -49,7 +49,7 @@ void AddUser::onAddUser()
     {
         ui->lePassword_2->setFocus();
         ui->lePassword_2->selectAll();
-        ui->lblMessage->setText("The passwords entered twice are different");
+        ui->lblMessage->setText(tr("The passwords entered twice are different"));
         return;
     }
 
@@ -57,12 +57,12 @@ void AddUser::onAddUser()
     {
         ui->leUsername->setFocus();
         ui->leUsername->selectAll();
-        ui->lblMessage->setText("The username already exists");
+        ui->lblMessage->setText(tr("The username already exists"));
         return;
     }
 
     UserManager::instance()->addUser(username, password);
-    QMessageBox::information(this, "User", "Add Success");
+    QMessageBox::information(this, tr("User"), tr("Add Success"));
 
     ui->leUsername->clear();
     ui->lePassword->clear();
