@@ -14,6 +14,33 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 
 
+function(update_translations qm_files sources)
+    set(ts_files ${ARGN})
+
+    message("===param1==>" ${qm_files})
+    message("===param2==>" ${sources})
+    message("===param3==>" ${ts_files})
+
+    # 查找多语言提取/生成工具
+    find_program(LUPDATE_EXECUTABLE Qt5::lupdate)
+    find_program(LRELEASE_EXECUTABLE Qt5::lrelease)
+
+    # 更新 ts 文件
+    execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${sources} -ts ${ts_files})
+
+    # 生成 qm 文件
+    foreach(ts_file ${ts_files})
+        get_filename_component(ts_file_name ${ts_file} NAME_WE)
+        set(qm_file ${CMAKE_CURRENT_BINARY_DIR}/${ts_file_name}.qm)
+        execute_process(COMMAND ${LRELEASE_EXECUTABLE} ${ts_file} -qm ${qm_file})
+        list(APPEND ${qm_files} ${qm_file})
+        message("===>" ${qm_file})
+    endforeach()
+
+    set(${qm_files} ${${qm_files}} PARENT_SCOPE)
+endfunction()
+
+
 function(make_translation_qrc qrc_file)
     set(qm_files ${ARGN})
 

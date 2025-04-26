@@ -9,8 +9,8 @@ set(TS_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/translations/${PROJECT_NAME}_en_US.ts
 )
 
-# 生成翻译文件
-qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
+# 更新翻译文件
+update_translations(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
 message("---->>>" ${QM_FILES})
 
 # 创建 qrc 资源文件
