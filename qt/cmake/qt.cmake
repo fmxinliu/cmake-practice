@@ -36,12 +36,23 @@ function(UPDATE_TRANSLATIONS _qm_files _sources)
         # 更新 ts 文件
         get_filename_component(_ts_file_dir ${_ts_file} DIRECTORY)
         file(MAKE_DIRECTORY "${_ts_file_dir}")
-        execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${_sources} -ts ${_ts_file})
+        execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${_sources} -ts ${_ts_file}
+            RESULT_VARIABLE _result
+            OUTPUT_VARIABLE _output
+            ERROR_VARIABLE _error)
+
+        if (NOT _result EQUAL 0)
+            message(FATAL_ERROR ${_output}${_error})
+        endif()
 
         # 生成 qm 文件
         get_filename_component(_ts_file_name ${_ts_file} NAME_WE)
         set(_qm_file ${CMAKE_CURRENT_BINARY_DIR}/${_ts_file_name}.qm)
-        execute_process(COMMAND ${LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file})
+        add_custom_command(OUTPUT ${_qm_file}
+            COMMAND ${LRELEASE_EXECUTABLE}
+            ARGS ${_ts_file} -qm ${_qm_file}
+            DEPENDS ${_ts_file} VERBATIM
+        )
 
         list(APPEND ${_qm_files} ${_qm_file})
     endforeach()
