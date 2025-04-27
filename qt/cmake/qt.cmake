@@ -23,38 +23,38 @@ function(MAKE_ABS_PATH _abs_files)
 endfunction()
 
 
-function(update_translations qm_files sources)
+function(UPDATE_TRANSLATIONS _qm_files _sources)
     # 转换为绝对路径
-    make_abs_path(ts_files ${ARGN})
-    make_abs_path(sources ${sources})
+    make_abs_path(_ts_files ${ARGN})
+    make_abs_path(_sources ${_sources})
 
     # 查找多语言提取/生成工具
     find_program(LUPDATE_EXECUTABLE lupdate REQUIRED)
     find_program(LRELEASE_EXECUTABLE lrelease REQUIRED)
 
-    foreach(ts_file ${ts_files})
+    foreach(_ts_file ${_ts_files})
         # 更新 ts 文件
-        get_filename_component(ts_file_dir ${ts_file} DIRECTORY)
-        file(MAKE_DIRECTORY "${ts_file_dir}")
-        execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${sources} -ts ${ts_file})
+        get_filename_component(_ts_file_dir ${_ts_file} DIRECTORY)
+        file(MAKE_DIRECTORY "${_ts_file_dir}")
+        execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${_sources} -ts ${_ts_file})
 
         # 生成 qm 文件
-        get_filename_component(ts_file_name ${ts_file} NAME_WE)
-        set(qm_file ${CMAKE_CURRENT_BINARY_DIR}/${ts_file_name}.qm)
-        execute_process(COMMAND ${LRELEASE_EXECUTABLE} ${ts_file} -qm ${qm_file})
+        get_filename_component(_ts_file_name ${_ts_file} NAME_WE)
+        set(_qm_file ${CMAKE_CURRENT_BINARY_DIR}/${_ts_file_name}.qm)
+        execute_process(COMMAND ${LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file})
 
-        list(APPEND ${qm_files} ${qm_file})
+        list(APPEND ${_qm_files} ${_qm_file})
     endforeach()
 
-    set(${qm_files} ${${qm_files}} PARENT_SCOPE)
+    set(${_qm_files} ${${_qm_files}} PARENT_SCOPE)
 endfunction()
 
 
-function(make_translation_qrc qrc_file)
-    file(WRITE ${qrc_file} "<RCC>\n  <qresource prefix=\"/translations\">\n")
-    foreach(qm_file ${ARGN})
-        get_filename_component(qm_file_name ${qm_file} NAME)
-        file(APPEND ${qrc_file} "    <file alias=\"${qm_file_name}\">${qm_file}</file>\n")
+function(MAKE_TRANSLATION_QRC _qrc_file)
+    file(WRITE ${_qrc_file} "<RCC>\n  <qresource prefix=\"/translations\">\n")
+    foreach(_qm_file ${ARGN})
+        get_filename_component(_qm_file_name ${_qm_file} NAME)
+        file(APPEND ${_qrc_file} "    <file alias=\"${_qm_file_name}\">${_qm_file}</file>\n")
     endforeach()
-    file(APPEND ${qrc_file} "</qresource>\n</RCC>")
+    file(APPEND ${_qrc_file} "</qresource>\n</RCC>")
 endfunction()
