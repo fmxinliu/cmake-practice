@@ -28,24 +28,22 @@ function(update_translations qm_files sources)
     make_abs_path(ts_files ${ARGN})
     make_abs_path(sources ${sources})
 
-    message("===param1==>" ${qm_files})
-    message("===param2==>" ${sources})
-    message("===param3==>" ${ts_files})
-
     # 查找多语言提取/生成工具
     find_program(LUPDATE_EXECUTABLE lupdate REQUIRED)
     find_program(LRELEASE_EXECUTABLE lrelease REQUIRED)
 
-    # 更新 ts 文件
-    execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${sources} -ts ${ts_files})
-
-    # 生成 qm 文件
     foreach(ts_file ${ts_files})
+        # 更新 ts 文件
+        get_filename_component(ts_file_dir ${ts_file} DIRECTORY)
+        file(MAKE_DIRECTORY "${ts_file_dir}")
+        execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${sources} -ts ${ts_file})
+
+        # 生成 qm 文件
         get_filename_component(ts_file_name ${ts_file} NAME_WE)
         set(qm_file ${CMAKE_CURRENT_BINARY_DIR}/${ts_file_name}.qm)
         execute_process(COMMAND ${LRELEASE_EXECUTABLE} ${ts_file} -qm ${qm_file})
+
         list(APPEND ${qm_files} ${qm_file})
-        message("===>" ${qm_file})
     endforeach()
 
     set(${qm_files} ${${qm_files}} PARENT_SCOPE)
@@ -53,10 +51,8 @@ endfunction()
 
 
 function(make_translation_qrc qrc_file)
-    set(qm_files ${ARGN})
-
     file(WRITE ${qrc_file} "<RCC>\n  <qresource prefix=\"/translations\">\n")
-    foreach(qm_file ${qm_files})
+    foreach(qm_file ${ARGN})
         get_filename_component(qm_file_name ${qm_file} NAME)
         file(APPEND ${qrc_file} "    <file alias=\"${qm_file_name}\">${qm_file}</file>\n")
     endforeach()
