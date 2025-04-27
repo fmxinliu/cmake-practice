@@ -33,8 +33,8 @@ function(update_translations qm_files sources)
     message("===param3==>" ${ts_files})
 
     # 查找多语言提取/生成工具
-    find_program(LUPDATE_EXECUTABLE Qt5::lupdate)
-    find_program(LRELEASE_EXECUTABLE Qt5::lrelease)
+    find_program(LUPDATE_EXECUTABLE lupdate REQUIRED)
+    find_program(LRELEASE_EXECUTABLE lrelease REQUIRED)
 
     # 更新 ts 文件
     execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${sources} -ts ${ts_files})
