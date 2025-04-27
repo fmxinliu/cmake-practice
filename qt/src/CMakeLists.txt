@@ -5,12 +5,12 @@ add_subdirectory(config)
 
 #######
 set(TS_FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/translations/${PROJECT_NAME}_zh_CN.ts
-    ${CMAKE_CURRENT_SOURCE_DIR}/translations/${PROJECT_NAME}_en_US.ts
+    translations/${PROJECT_NAME}_zh_CN.ts
+    translations/${PROJECT_NAME}_en_US.ts
 )
 
 # 更新翻译文件
-update_translations(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
+update_translations(QM_FILES . ${TS_FILES})
 message("---->>>" ${QM_FILES})
 
 # 创建 qrc 资源文件

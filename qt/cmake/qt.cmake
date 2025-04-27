@@ -14,8 +14,19 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 
 
+function(MAKE_ABS_PATH _abs_files)
+    foreach(_file ${ARGN})
+        get_filename_component(_abs_file ${_file} ABSOLUTE)
+        list(APPEND _abs_files ${_abs_file})
+    endforeach()
+    set(${_abs_files} ${${_abs_files}} PARENT_SCOPE)
+endfunction()
+
+
 function(update_translations qm_files sources)
-    set(ts_files ${ARGN})
+    # 转换为绝对路径
+    make_abs_path(ts_files ${ARGN})
+    make_abs_path(sources ${sources})
 
     message("===param1==>" ${qm_files})
     message("===param2==>" ${sources})
