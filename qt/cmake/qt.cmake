@@ -13,20 +13,12 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 # 查找多语言模块
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 
-
-function(MAKE_ABS_PATH _abs_files)
-    foreach(_file ${ARGN})
-        get_filename_component(_abs_file ${_file} ABSOLUTE)
-        list(APPEND _abs_files ${_abs_file})
-    endforeach()
-    set(${_abs_files} ${${_abs_files}} PARENT_SCOPE)
-endfunction()
-
+include(cmake/bulk_get_filename_component.cmake)
 
 function(UPDATE_TRANSLATIONS _qm_files _sources)
     # 转换为绝对路径
-    make_abs_path(_ts_files ${ARGN})
-    make_abs_path(_sources ${_sources})
+    bulk_get_filename_component(_ts_files ${ARGN} ABSOLUTE)
+    bulk_get_filename_component(_sources ${_sources} ABSOLUTE)
 
     # 查找多语言提取/生成工具
     find_program(LUPDATE_EXECUTABLE lupdate REQUIRED)
@@ -39,7 +31,8 @@ function(UPDATE_TRANSLATIONS _qm_files _sources)
         execute_process(COMMAND ${LUPDATE_EXECUTABLE} ${_sources} -ts ${_ts_file}
             RESULT_VARIABLE _result
             OUTPUT_VARIABLE _output
-            ERROR_VARIABLE _error)
+            ERROR_VARIABLE _error
+        )
 
         if (NOT _result EQUAL 0)
             message(FATAL_ERROR ${_output}${_error})
