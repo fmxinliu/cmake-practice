@@ -11,11 +11,11 @@ set(TS_FILES
 
 # 更新翻译文件
 update_translations(QM_FILES . ${TS_FILES})
-message("---->>>" ${QM_FILES})
+message("QM_FILES: ${QM_FILES}")
 
 # 创建 qrc 资源文件
-set(QRC_FILE ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc)
-make_translation_qrc(${QRC_FILE} ${QM_FILES})
+make_translation_qrc(QRC_FILE ${QM_FILES})
+message("QRC_FILE: ${QRC_FILE}")
 #######
 
 # 源文件
@@ -27,11 +27,9 @@ set(SRC_FILES
     view/login.cpp
     view/login.h
     view/login.ui
-    ${QRC_FILE}
-    ${TS_FILES}
 )
 
 # 生成可执行文件
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+add_executable(${PROJECT_NAME} ${SRC_FILES} ${QRC_FILE} ${TS_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets users config)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/view)

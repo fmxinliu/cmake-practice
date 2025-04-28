@@ -47,7 +47,7 @@ function(UPDATE_TRANSLATIONS _qm_files _sources)
 
         # 生成 qm 文件
         get_filename_component(_ts_file_name ${_ts_file} NAME_WE)
-        set(_qm_file ${CMAKE_CURRENT_BINARY_DIR}/${_ts_file_name}.qm)
+        set(_qm_file ${CMAKE_CURRENT_BINARY_DIR}/translations/${_ts_file_name}.qm)
         add_custom_command(OUTPUT ${_qm_file}
             COMMAND ${LRELEASE_EXECUTABLE}
             ARGS ${_ts_file} -qm ${_qm_file}
@@ -62,10 +62,20 @@ endfunction()
 
 
 function(MAKE_TRANSLATION_QRC _qrc_file)
-    file(WRITE ${_qrc_file} "<RCC>\n  <qresource prefix=\"/translations\">\n")
+    if(DEFINED ${_qrc_file})
+        get_filename_component(_qrc_abs_file ${${_qrc_file}} ABSOLUTE)
+        get_filename_component(_qrc_dir ${_qrc_abs_file} DIRECTORY)
+    else()
+        set(_qrc_dir ${CMAKE_CURRENT_BINARY_DIR}/translations)
+        set(_qrc_abs_file ${_qrc_dir}/translations.qrc)
+        set(${_qrc_file} ${_qrc_abs_file} PARENT_SCOPE)
+    endif()
+
+    file(MAKE_DIRECTORY ${_qrc_dir})
+    file(WRITE ${_qrc_abs_file} "<RCC>\n  <qresource prefix=\"/translations\">\n")
     foreach(_qm_file ${ARGN})
         get_filename_component(_qm_file_name ${_qm_file} NAME)
-        file(APPEND ${_qrc_file} "    <file alias=\"${_qm_file_name}\">${_qm_file}</file>\n")
+        file(APPEND ${_qrc_abs_file} "    <file alias=\"${_qm_file_name}\">${_qm_file}</file>\n")
     endforeach()
-    file(APPEND ${_qrc_file} "</qresource>\n</RCC>")
+    file(APPEND ${_qrc_abs_file} "</qresource>\n</RCC>")
 endfunction()
