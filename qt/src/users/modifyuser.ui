@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Modify User</string>
+    <string>Modify</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnReturn">
@@ -73,7 +73,7 @@
   <widget class="QLabel" name="lblUser">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>70</x>
      <y>60</y>
      <width>68</width>
      <height>15</height>
@@ -89,9 +89,9 @@
   <widget class="QLabel" name="lblPassword">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>70</x>
      <y>100</y>
-     <width>81</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -110,6 +110,9 @@
      <width>141</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
  </widget>
