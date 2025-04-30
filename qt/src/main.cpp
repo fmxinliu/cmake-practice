@@ -12,9 +12,10 @@ int main(int argc, char *argv[])
     QTranslator translator;
     if (translator.load(":/translations/cmake_qt_zh_CN.qm")) {
         qDebug() << "Load translation success";
-        Q_ASSERT(app.installTranslator(&translator));
+        bool ret = app.installTranslator(&translator);
+        qDebug() << "Install translation success:" << ret;
     } else {
-        qDebug() << "Load failed. Check path or qrc file";
+        qDebug() << "Load translation failed. Check path or qrc file";
     }
 
     Login login;
