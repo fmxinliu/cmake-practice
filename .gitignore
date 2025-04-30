@@ -10,3 +10,6 @@ config.h
 
 # vs tmp dir
 .vs/
+
+# tmp file
+CMakeLists.txt.user

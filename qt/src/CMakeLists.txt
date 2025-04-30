@@ -33,3 +33,6 @@ set(SRC_FILES
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${QRC_FILE} ${TS_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets users config)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/view)
+
+# 去掉 console 控制台
+set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
