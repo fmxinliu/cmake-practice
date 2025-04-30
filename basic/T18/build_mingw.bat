@@ -11,15 +11,19 @@
 @ cd build_mingw
 
 @rem 加载Build配置
-@ call ..\..\BuildConfig.bat
+@ call ..\..\..\BuildConfig.bat
+@ if %errorlevel% neq 0 @ goto :end
+
+@rem 设置MinGW环境
+@ set PATH=%mingw_bin_dir%;%PATH%
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 根据 CMakeLists.txt，生成 mingw makefile 文件
-@ "%cmake_exe%" .. -G "MinGW Makefiles" -DCMAKE_MAKE_PROGRAM=%make_exe%
+@ "%cmake_exe%" .. -G "MinGW Makefiles"
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 编译
-@ %make_exe%
+@ "%mingw_make_exe%"
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 测试
@@ -29,7 +33,7 @@
 
 @rem 打包
 @ cd ..\build_mingw
-@ %make_exe% package
+@ "%mingw_make_exe%" package
 
 :end
 @ pause & endlocal

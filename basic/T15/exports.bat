@@ -2,7 +2,7 @@
 @ setlocal & cd /d %~dp0
 
 @rem 加载Build配置
-@ call ..\BuildConfig.bat
+@ call ..\..\BuildConfig.bat
 @ if !errorlevel! neq 0 @ goto :end
 
 @rem 编译导出

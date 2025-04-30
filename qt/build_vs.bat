@@ -6,7 +6,7 @@
 @ cd build_vs
 
 @rem 加载Build配置
-@ call ..\BuildConfig.bat
+@ call ..\..\BuildConfig.bat
 @ if %errorlevel% neq 0 @ goto :end
  
 @rem 设置Qt环境

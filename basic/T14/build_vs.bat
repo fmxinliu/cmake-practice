@@ -7,11 +7,11 @@
 @ cd build
 
 @rem 加载Build配置
-@ call ..\..\BuildConfig.bat
+@ call ..\..\..\BuildConfig.bat
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 生成VS工程
-@ "%cmake_exe%" .. -G %vs_generators%
+@ "%cmake_exe%" .. -G %vs_generator_x86%
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 编译

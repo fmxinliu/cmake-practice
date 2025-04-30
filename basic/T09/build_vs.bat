@@ -7,13 +7,13 @@
 @ cd build
 
 @rem 加载Build配置
-@ call ..\..\BuildConfig.bat
+@ call ..\..\..\BuildConfig.bat
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 生成VS工程
 @ echo After Configure and Generate project, close the cmake-gui window to continue...
 @ cmake-gui ..
-@rem "%cmake_exe%" .. -G %vs_generators%
+@rem "%cmake_exe%" .. -G %vs_generator_x86%
 
 @rem 编译
 @ "%vs_build_exe%" demo.sln /Rebuild "Release"

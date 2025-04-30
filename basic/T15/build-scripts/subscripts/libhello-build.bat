@@ -10,11 +10,11 @@
 @ cd build/
 
 @rem 加载Build配置
-@ call ..\..\BuildConfig.bat
+@ call ..\..\..\BuildConfig.bat
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 根据CMakeList.txt文件，生成平台相关的Makefile或工程文件
-@ "%cmake_exe%" .. -G %vs_generators%
+@ "%cmake_exe%" .. -G %vs_generator_x86%
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 编译
