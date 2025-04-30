@@ -10,3 +10,4 @@
 *.dll       binary
 *.bat       text eol=crlf
 *.sh        text eol=lf
+*.ts        text eol=lf
