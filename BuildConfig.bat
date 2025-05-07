@@ -18,4 +18,5 @@
 
 @ set qt_vs_bin_dir=C:\DevEnv\Qt\5.9.9\5.9.9\msvc2017_64\bin
 @ set qt_mingw_bin_dir=C:\DevEnv\Qt\5.9.9\5.9.9\mingw53_32\bin
+@ set qt_mingw_tools_dir=C:\DevEnv\Qt\5.9.9\Tools\mingw530_32\bin
 @ set qt_mingw_make_exe=mingw32-make.exe
