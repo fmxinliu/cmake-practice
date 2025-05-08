@@ -77,11 +77,26 @@ endfunction()
 # 查找QtTest模块
 find_package(Qt5 COMPONENTS Test REQUIRED)
 
-# 启用CTest，必须在顶层 CMakeLists.txt 中调用
+# 启用CTest（必须在顶层 CMakeLists.txt 中调用）
 enable_testing()
 
 function(ADD_QTEST _test_name _test_sources _test_lib)
+    if(IS_ABSOLUTE ${TEST_BIN_DIR})
+        set(_test_working_dir ${TEST_BIN_DIR})
+    else()
+        get_filename_component(_test_working_dir ${PROJECT_BINARY_DIR}/tests/${TEST_BIN_DIR} ABSOLUTE)
+    endif()
+
+    message("TESTS_WORKING_DIR: ${_test_working_dir}")
+
     add_executable(${_test_name} ${_test_sources})
     target_link_libraries(${_test_name} PRIVATE Qt5::Test ${_test_lib})
-    add_test(testcase_${_test_name} ${_test_name})
+    set_target_properties(${_test_name} PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${_test_working_dir}"
+    )
+    add_test(
+        NAME                ${_test_name}
+        COMMAND             ${_test_name}
+        WORKING_DIRECTORY   ${_test_working_dir}
+    )
 endfunction()
