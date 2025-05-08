@@ -17,4 +17,5 @@ cmake .. -G "Unix Makefiles" || exit
 make || exit
 
 # 测试
+export CTEST_OUTPUT_ON_FAILURE=1
 make test && src/cmake_qt

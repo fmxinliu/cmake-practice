@@ -22,6 +22,7 @@
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行单元测试
+@ set CTEST_OUTPUT_ON_FAILURE=1
 @ "%ctest_exe%"
 @ if %errorlevel% neq 0 @ goto :end
 
