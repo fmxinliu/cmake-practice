@@ -13,6 +13,9 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 # 查找多语言模块
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 
+# 查找QtTest模块
+find_package(Qt5 COMPONENTS Test REQUIRED)
+
 include(cmake/bulk_get_filename_component.cmake)
 
 function(UPDATE_TRANSLATIONS _qm_files _sources)
@@ -71,4 +74,10 @@ function(MAKE_TRANSLATION_QRC _qrc_file)
         file(APPEND ${_qrc_abs_file} "    <file alias=\"${_qm_file_name}\">${_qm_file}</file>\n")
     endforeach()
     file(APPEND ${_qrc_abs_file} "</qresource>\n</RCC>")
+endfunction()
+
+
+function(ADD_QTEST _test_name _test_sources _test_lib)
+    add_executable(${_test_name} ${_test_sources})
+    target_link_libraries(${_test_name} PRIVATE Qt5::Test ${_test_lib})
 endfunction()
