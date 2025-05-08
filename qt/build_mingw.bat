@@ -21,9 +21,12 @@
 @ "%qt_mingw_make_exe%"
 @ if %errorlevel% neq 0 @ goto :end
 
-@rem 测试
-@ cd src
-@ cmake_qt.exe
+@rem 运行单元测试
+@ "%qt_mingw_make_exe%" test
+@ if %errorlevel% neq 0 @ goto :end
+
+@rem 运行主程序
+@ src\cmake_qt.exe
 
 :end
 @ pause & endlocal

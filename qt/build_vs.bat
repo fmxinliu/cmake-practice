@@ -21,9 +21,12 @@
 @ "%vs_build_exe%" cmake_qt.sln /Rebuild "Release"
 @ if %errorlevel% neq 0 @ goto :end
 
-@rem 测试
-@ cd src\Release
-@ cmake_qt.exe
+@rem 运行单元测试
+@ "%ctest_exe%"
+@ if %errorlevel% neq 0 @ goto :end
+
+@rem 运行主程序
+@ src\Release\cmake_qt.exe
 
 :end
 @ pause & endlocal

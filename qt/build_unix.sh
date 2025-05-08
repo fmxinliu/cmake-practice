@@ -17,4 +17,4 @@ cmake .. -G "Unix Makefiles" || exit
 make || exit
 
 # 测试
-cd src && ./cmake_qt
+make test && src/cmake_qt
