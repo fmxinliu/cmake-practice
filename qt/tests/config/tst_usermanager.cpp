@@ -1,8 +1,6 @@
 #include <QTest>
 #include <QTime>
-#include <QCoreApplication>
 #include "usermanager.h"
-
 
 class tst_UserManager : public QObject
 {

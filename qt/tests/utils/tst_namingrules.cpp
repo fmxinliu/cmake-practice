@@ -1,8 +1,5 @@
 #include <QTest>
-#include <QTime>
-#include <QCoreApplication>
 #include "namingrules.h"
-
 
 class tst_NamingRules : public QObject
 {
