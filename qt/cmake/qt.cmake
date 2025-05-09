@@ -74,6 +74,27 @@ function(MAKE_TRANSLATION_QRC _qrc_file)
 endfunction()
 
 
+function(MAKE_IMAGES_QRC _qrc_file)
+    if(DEFINED ${_qrc_file})
+        get_filename_component(_qrc_abs_file ${${_qrc_file}} ABSOLUTE)
+        get_filename_component(_qrc_dir ${_qrc_abs_file} DIRECTORY)
+    else()
+        set(_qrc_dir ${CMAKE_CURRENT_BINARY_DIR}/images)
+        set(_qrc_abs_file ${_qrc_dir}/images.qrc)
+        set(${_qrc_file} ${_qrc_abs_file} PARENT_SCOPE)
+    endif()
+
+    file(MAKE_DIRECTORY ${_qrc_dir})
+    file(WRITE ${_qrc_abs_file} "<RCC>\n  <qresource prefix=\"/images\">\n")
+    foreach(_qm_file ${ARGN})
+        get_filename_component(_qm_file_name ${_qm_file} NAME)
+        get_filename_component(_qm_abs_file ${_qm_file} ABSOLUTE)
+        file(APPEND ${_qrc_abs_file} "    <file alias=\"${_qm_file_name}\">${_qm_abs_file}</file>\n")
+    endforeach()
+    file(APPEND ${_qrc_abs_file} "</qresource>\n</RCC>")
+endfunction()
+
+
 # 查找QtTest模块
 find_package(Qt5 COMPONENTS Test REQUIRED)
 
