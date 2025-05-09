@@ -17,17 +17,20 @@
 @ "%cmake_exe%" .. -G %vs_generator_x64% 
 @ if %errorlevel% neq 0 @ goto :end
 
+@REM 设置VS工程build类型
+@ set BUILD_TYPE=Release
+
 @rem 编译
-@ "%vs_build_exe%" cmake_qt.sln /Rebuild "Release"
+@ "%vs_build_exe%" cmake_qt.sln /Rebuild %BUILD_TYPE%
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行单元测试
 @ set CTEST_OUTPUT_ON_FAILURE=1
-@ "%ctest_exe%" -C "Release"
+@ "%ctest_exe%" -C %BUILD_TYPE%
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行主程序
-@ src\Release\cmake_qt.exe
+@ src\%BUILD_TYPE%\cmake_qt.exe
 
 :end
 @ pause & endlocal

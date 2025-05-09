@@ -10,8 +10,11 @@ PATH=~/Qt5.9.9/5.9.9/gcc_64/bin:$PATH
 [ -d "build_unix" ] && rm -rf build_unix
 mkdir build_unix && cd build_unix
 
+# 设置Unix build类型
+BUILD_TYPE=Release
+
 # 根据 CMakeLists.txt，生成 unix makefile 文件
-cmake .. -G "Unix Makefiles" || exit
+cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=$BUILD_TYPE || exit
 
 # 编译
 make || exit

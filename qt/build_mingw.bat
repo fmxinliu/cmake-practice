@@ -13,8 +13,11 @@
 @ set PATH=%qt_mingw_bin_dir%;%qt_mingw_tools_dir%;%PATH%
 @ if %errorlevel% neq 0 @ goto :end
 
+@REM 设置MinGW工程build类型
+@ set BUILD_TYPE=Release
+
 @rem 根据 CMakeLists.txt，生成 mingw makefile 文件
-@ "%cmake_exe%" .. -G "MinGW Makefiles"
+@ "%cmake_exe%" .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 编译
