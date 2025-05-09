@@ -14,3 +14,6 @@ update_translations(QM_FILES ${PROJECT_SOURCE_DIR}/src ${TS_FILES})
 set(TR_QRC_FILE "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc") # 修改qrc生成位置（可选）
 create_qrc_file(TR_QRC_FILE "/translations" ${QM_FILES})
 add_qtest(tst_translations_qrc "tst_translations_qrc.cpp;${TR_QRC_FILE}" Qt5::Core)
+if (MSVC)
+    target_compile_options(tst_translations_qrc PRIVATE "/utf-8")
+endif()
