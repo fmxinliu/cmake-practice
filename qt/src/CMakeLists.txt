@@ -13,13 +13,15 @@ set(TS_FILES
 update_translations(QM_FILES . ${TS_FILES})
 message("QM_FILES: ${QM_FILES}")
 
-# 创建翻译 qrc 资源文件
-make_translation_qrc(QRC_FILE ${QM_FILES})
-message("QRC_FILE: ${QRC_FILE}")
+## 创建翻译 qrc 资源文件
+create_qrc_file(TR_QRC_FILE "/translations" ${QM_FILES})
+message("TR_QRC_FILE: ${TR_QRC_FILE}")
 
-# 创建图片 qrc 资源文件
-make_images_qrc(IMG_QRC_FILE "images/app.ico")
+## 创建图片 qrc 资源文件
+create_qrc_file(IMG_QRC_FILE "/images" "images/app.ico")
 message("IMG_QRC_FILE: ${IMG_QRC_FILE}")
+
+set(QRC_FILES ${TR_QRC_FILE} ${IMG_QRC_FILE})
 #######
 
 # 源文件
@@ -34,7 +36,7 @@ set(SRC_FILES
 )
 
 # 生成可执行文件
-add_executable(${PROJECT_NAME} ${SRC_FILES} ${QRC_FILE} ${TS_FILES} ${IMG_QRC_FILE})
+add_executable(${PROJECT_NAME} ${SRC_FILES} ${QRC_FILES} ${TS_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets users config)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/view)
 

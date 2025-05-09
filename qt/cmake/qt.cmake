@@ -40,7 +40,9 @@ function(UPDATE_TRANSLATIONS _qm_files _sources)
 
         # 生成 qm 文件
         get_filename_component(_ts_file_name ${_ts_file} NAME_WE)
-        set(_qm_file ${CMAKE_CURRENT_BINARY_DIR}/translations/${_ts_file_name}.qm)
+        set(_qm_dir "${CMAKE_CURRENT_BINARY_DIR}/translations")
+        set(_qm_file ${_qm_dir}/${_ts_file_name}.qm)
+        file(MAKE_DIRECTORY ${_qm_dir})
         add_custom_command(OUTPUT ${_qm_file}
             COMMAND ${LRELEASE_EXECUTABLE}
             ARGS ${_ts_file} -qm ${_qm_file}
@@ -54,44 +56,34 @@ function(UPDATE_TRANSLATIONS _qm_files _sources)
 endfunction()
 
 
-function(MAKE_TRANSLATION_QRC _qrc_file)
+function(CREATE_QRC_FILE _qrc_file _qrc_prefix)
+    if(NOT _qrc_prefix MATCHES "^/[a-zA-Z]*$")
+        message(FATAL_ERROR "_qrc_prefix: Value is \"${_qrc_prefix}\", Format needs: / followed by letter(s)")
+    endif()
+
     if(DEFINED ${_qrc_file})
         get_filename_component(_qrc_abs_file ${${_qrc_file}} ABSOLUTE)
         get_filename_component(_qrc_dir ${_qrc_abs_file} DIRECTORY)
     else()
-        set(_qrc_dir ${CMAKE_CURRENT_BINARY_DIR}/translations)
-        set(_qrc_abs_file ${_qrc_dir}/translations.qrc)
+        set(_qrc_dir ${CMAKE_CURRENT_BINARY_DIR}${_qrc_prefix})
+        set(_qrc_abs_file ${_qrc_dir}${_qrc_prefix}.qrc)
         set(${_qrc_file} ${_qrc_abs_file} PARENT_SCOPE)
     endif()
 
     file(MAKE_DIRECTORY ${_qrc_dir})
-    file(WRITE ${_qrc_abs_file} "<RCC>\n  <qresource prefix=\"/translations\">\n")
-    foreach(_qm_file ${ARGN})
-        get_filename_component(_qm_file_name ${_qm_file} NAME)
-        file(APPEND ${_qrc_abs_file} "    <file alias=\"${_qm_file_name}\">${_qm_file}</file>\n")
+
+    list(APPEND qrc_line_list "<RCC>")
+    list(APPEND qrc_line_list "  <qresource prefix=\"${_qrc_prefix}\">")
+    foreach(_file ${ARGN})
+        get_filename_component(_file_name ${_file} NAME)
+        get_filename_component(_abs_file ${_file} ABSOLUTE)
+        list(APPEND qrc_line_list "    <file alias=\"${_file_name}\">${_abs_file}</file>")
     endforeach()
-    file(APPEND ${_qrc_abs_file} "</qresource>\n</RCC>")
-endfunction()
+    list(APPEND qrc_line_list "  </qresource>")
+    list(APPEND qrc_line_list "</RCC>")
 
-
-function(MAKE_IMAGES_QRC _qrc_file)
-    if(DEFINED ${_qrc_file})
-        get_filename_component(_qrc_abs_file ${${_qrc_file}} ABSOLUTE)
-        get_filename_component(_qrc_dir ${_qrc_abs_file} DIRECTORY)
-    else()
-        set(_qrc_dir ${CMAKE_CURRENT_BINARY_DIR}/images)
-        set(_qrc_abs_file ${_qrc_dir}/images.qrc)
-        set(${_qrc_file} ${_qrc_abs_file} PARENT_SCOPE)
-    endif()
-
-    file(MAKE_DIRECTORY ${_qrc_dir})
-    file(WRITE ${_qrc_abs_file} "<RCC>\n  <qresource prefix=\"/images\">\n")
-    foreach(_qm_file ${ARGN})
-        get_filename_component(_qm_file_name ${_qm_file} NAME)
-        get_filename_component(_qm_abs_file ${_qm_file} ABSOLUTE)
-        file(APPEND ${_qrc_abs_file} "    <file alias=\"${_qm_file_name}\">${_qm_abs_file}</file>\n")
-    endforeach()
-    file(APPEND ${_qrc_abs_file} "</qresource>\n</RCC>")
+    string(REPLACE ";" "\n" _qrc_file_content "${qrc_line_list}")
+    file(WRITE "${_qrc_abs_file}" ${_qrc_file_content})
 endfunction()
 
 
@@ -105,10 +97,8 @@ function(ADD_QTEST _test_name _test_sources _test_lib)
     if(IS_ABSOLUTE ${TEST_BIN_DIR})
         set(_test_working_dir ${TEST_BIN_DIR})
     else()
-        get_filename_component(_test_working_dir ${PROJECT_BINARY_DIR}/tests/${TEST_BIN_DIR} ABSOLUTE)
+        get_filename_component(_test_working_dir "${PROJECT_BINARY_DIR}/tests/${TEST_BIN_DIR}" ABSOLUTE)
     endif()
-
-    message("TESTS_WORKING_DIR: ${_test_working_dir}")
 
     add_executable(${_test_name} ${_test_sources})
     target_link_libraries(${_test_name} PRIVATE Qt5::Test ${_test_lib})
