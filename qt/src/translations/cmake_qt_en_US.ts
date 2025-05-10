@@ -150,35 +150,35 @@ different</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../utils/namingrules.cpp" line="9"/>
+        <location filename="../utils/namingrules.cpp" line="8"/>
         <source>Username is empty</source>
         <translation>The username cannot be empty</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="15"/>
+        <location filename="../utils/namingrules.cpp" line="14"/>
         <source>Username is all white characters</source>
         <translation>The username cannot be blank</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="21"/>
+        <location filename="../utils/namingrules.cpp" line="20"/>
         <source>Username start with white character</source>
         <translation>The username cannot start with
 blank character</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="27"/>
+        <location filename="../utils/namingrules.cpp" line="26"/>
         <source>Username end with white character</source>
         <translation>The username cannot end with
 blank character</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="34"/>
+        <location filename="../utils/namingrules.cpp" line="33"/>
         <source>Username contains not allow character</source>
         <translation>Username contains not allow 
 character(s)</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="50"/>
+        <location filename="../utils/namingrules.cpp" line="49"/>
         <source>Password length must be between %1-%2 
 characters</source>
         <translation>Password length must be between %1-%2 

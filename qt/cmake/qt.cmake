@@ -7,11 +7,14 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+# 查找Qt版本
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
+
 # 查找UI模块
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 # 查找多语言模块
-find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS LinguistTools REQUIRED)
 
 include(cmake/bulk_get_filename_component.cmake)
 
@@ -88,7 +91,7 @@ endfunction()
 
 
 # 查找QtTest模块
-find_package(Qt5 COMPONENTS Test REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test REQUIRED)
 
 # 启用CTest（必须在顶层 CMakeLists.txt 中调用）
 enable_testing()
@@ -101,7 +104,7 @@ function(ADD_QTEST _test_name _test_sources _test_lib)
     endif()
 
     add_executable(${_test_name} ${_test_sources})
-    target_link_libraries(${_test_name} PRIVATE Qt5::Test ${_test_lib})
+    target_link_libraries(${_test_name} PRIVATE Qt${QT_VERSION_MAJOR}::Test ${_test_lib})
     set_target_properties(${_test_name} PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${_test_working_dir}"
     )

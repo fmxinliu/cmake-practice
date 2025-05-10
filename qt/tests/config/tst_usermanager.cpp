@@ -1,5 +1,9 @@
 #include <QTest>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QRandomGenerator>
+#else
 #include <QTime>
+#endif
 #include "usermanager.h"
 
 class tst_UserManager : public QObject
@@ -47,14 +51,21 @@ static QString generateRandomPassword(int num)
         "0123456789");
 
     QString randomString;
-    qsrand(QTime(0,0,0).secsTo(QTime::currentTime())); // 初始化随机数种子
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    for (int i = 0; i < num; ++i)
+    {
+        int index = QRandomGenerator::global()->bounded(possibleCharacters.length());
+        randomString.append(possibleCharacters.at(index));
+    }
+#else
+    qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime())); // 初始化随机种子
     for (int i = 0; i < num; ++i)
     {
         int index = qrand() % possibleCharacters.length();
-        QChar nextChar = possibleCharacters.at(index);
-        randomString.append(nextChar);
+        randomString.append(possibleCharacters.at(index));
     }
+#endif
 
     return randomString;
 }

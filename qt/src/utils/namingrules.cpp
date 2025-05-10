@@ -1,6 +1,5 @@
 #include "namingrules.h"
 #include <QRegularExpression>
-#include <QRegExp>
 
 bool NamingRules::isValidUsername(const QString &username)
 {
@@ -53,7 +52,8 @@ bool NamingRules::isValidPassword(const QString &password)
 
     // 必须包含字母、数字
     bool isValid = false;
-    if (password.contains(QRegExp("[0-9]{1,}")) && password.contains(QRegExp("[a-zA-Z]{1,}")))
+    QRegularExpression regex("^(?=.*[A-Za-z])(?=.*\\d).+$");
+    if (regex.match(password).hasMatch())
     {
         isValid = true;
         m_message.clear();

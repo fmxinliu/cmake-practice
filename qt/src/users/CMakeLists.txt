@@ -12,5 +12,5 @@ set(SRC_FILES
 
 # 生成静态库
 add_library(${module_name} STATIC ${SRC_FILES})
-target_link_libraries(${module_name} PRIVATE Qt5::Widgets utils config)
+target_link_libraries(${module_name} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets utils config)
 target_include_directories(${module_name} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
