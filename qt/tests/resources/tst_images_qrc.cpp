@@ -1,5 +1,7 @@
 #include <QTest>
 #include <QIcon>
+#include <QFile>
+#include <QDebug>
 
 class tst_ImagesQrc : public QObject
 {
@@ -16,10 +18,10 @@ void tst_ImagesQrc::tst_load_icon_data()
     QTest::addColumn<QString>("path");
     QTest::addColumn<bool>("result");
 
-    QTest::addRow("empty path") << "" << false;
-    QTest::addRow("not exists path") << "path/to/image.png" << false;
-    QTest::addRow("load from file-path") << APP_ICON_PATH << true;
-    QTest::addRow("load from qrc-path") << ":images/app.ico" << true;
+    QTest::newRow("empty path") << "" << false;
+    QTest::newRow("not exists path") << "path/to/image.png" << false;
+    QTest::newRow("load from file-path") << APP_ICON_PATH << true;
+    QTest::newRow("load from qrc-path") << ":images/app.ico" << true;
 }
 
 void tst_ImagesQrc::tst_load_icon()

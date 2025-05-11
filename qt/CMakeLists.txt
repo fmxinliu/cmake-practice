@@ -4,11 +4,8 @@ cmake_minimum_required(VERSION 3.5)
 # 指定工程名
 project(cmake_qt LANGUAGES CXX)
 
-# 设置 cmake 模块路径
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-
-# 包含qt.cmake
-include(qt)
+# 包含Qt配置
+include(${PROJECT_SOURCE_DIR}/cmake/QtConfig.cmake)
 
 # 添加子目录，进一步Make
 add_subdirectory(src)

@@ -22,8 +22,8 @@ void tst_UserManager::addUser_data()
     QTest::addColumn<QString>("username");
     QTest::addColumn<QString>("password");
 
-    QTest::addRow("add new user") << "abc" << "123";
-    QTest::addRow("add exists user") << "abc" << "456";
+    QTest::newRow("add new user") << "abc" << "123";
+    QTest::newRow("add exists user") << "abc" << "456";
 }
 
 void tst_UserManager::addUser()

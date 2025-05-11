@@ -1,27 +1,15 @@
-# C++11标准
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# 开启Qt自动编译
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-# 查找Qt版本
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-
-# 查找UI模块
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
-
-# 查找多语言模块
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS LinguistTools REQUIRED)
-
-include(cmake/bulk_get_filename_component.cmake)
+function(GET_ABS_PATH _abs_files)
+    foreach(_file ${ARGN})
+        get_filename_component(_abs_file ${_file} ABSOLUTE)
+        list(APPEND _abs_files ${_abs_file})
+    endforeach()
+    set(${_abs_files} ${${_abs_files}} PARENT_SCOPE)
+endfunction()
 
 function(UPDATE_TRANSLATIONS _qm_files _sources)
     # 转换为绝对路径
-    bulk_get_filename_component(_ts_files ${ARGN} ABSOLUTE)
-    bulk_get_filename_component(_sources ${_sources} ABSOLUTE)
+    get_abs_path(_ts_files ${ARGN})
+    get_abs_path(_sources ${_sources})
 
     # 查找多语言提取/生成工具
     find_program(LUPDATE_EXECUTABLE lupdate REQUIRED)
@@ -58,7 +46,6 @@ function(UPDATE_TRANSLATIONS _qm_files _sources)
     set(${_qm_files} ${${_qm_files}} PARENT_SCOPE)
 endfunction()
 
-
 function(CREATE_QRC_FILE _qrc_file _qrc_prefix)
     if(NOT _qrc_prefix MATCHES "^/[a-zA-Z]*$")
         message(FATAL_ERROR "_qrc_prefix: Value is \"${_qrc_prefix}\", Format needs: / followed by letter(s)")
@@ -89,13 +76,6 @@ function(CREATE_QRC_FILE _qrc_file _qrc_prefix)
     file(WRITE "${_qrc_abs_file}" ${_qrc_file_content})
 endfunction()
 
-
-# 查找QtTest模块
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test REQUIRED)
-
-# 启用CTest（必须在顶层 CMakeLists.txt 中调用）
-enable_testing()
-
 function(ADD_QTEST _test_name _test_sources _test_lib)
     if(IS_ABSOLUTE ${TEST_BIN_DIR})
         set(_test_working_dir ${TEST_BIN_DIR})
@@ -104,7 +84,7 @@ function(ADD_QTEST _test_name _test_sources _test_lib)
     endif()
 
     add_executable(${_test_name} ${_test_sources})
-    target_link_libraries(${_test_name} PRIVATE Qt${QT_VERSION_MAJOR}::Test ${_test_lib})
+    target_link_libraries(${_test_name} PRIVATE ${Qt}Test ${_test_lib})
     set_target_properties(${_test_name} PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${_test_working_dir}"
     )

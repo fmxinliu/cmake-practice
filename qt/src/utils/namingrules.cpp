@@ -1,5 +1,10 @@
 #include "namingrules.h"
+#include <QObject>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QRegularExpression>
+#else
+#include <QRegExp>
+#endif
 
 bool NamingRules::isValidUsername(const QString &username)
 {
@@ -28,8 +33,13 @@ bool NamingRules::isValidUsername(const QString &username)
     }
 
     // 只允许字母、数字、下划线和空格
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QRegularExpression regex("^[a-zA-Z0-9_ ]+$");
     if (!regex.match(username).hasMatch()) {
+#else
+    QRegExp regex("^[a-zA-Z0-9_ ]*$");
+    if (!regex.exactMatch(username)) {
+#endif
         m_message = QObject::tr("Username contains not allow character");
         return false;
     }
@@ -52,8 +62,12 @@ bool NamingRules::isValidPassword(const QString &password)
 
     // 必须包含字母、数字
     bool isValid = false;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     QRegularExpression regex("^(?=.*[A-Za-z])(?=.*\\d).+$");
     if (regex.match(password).hasMatch())
+#else
+    if (password.contains(QRegExp("[0-9]{1,}")) && password.contains(QRegExp("[a-zA-Z]{1,}")))
+#endif
     {
         isValid = true;
         m_message.clear();

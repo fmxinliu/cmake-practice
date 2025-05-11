@@ -37,7 +37,7 @@ set(SRC_FILES
 
 # 生成可执行文件
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${QRC_FILES} ${TS_FILES})
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets users config)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${QtWidgets} users config)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/view)
 
 # 去掉 console 控制台

@@ -11,10 +11,10 @@ AddUser::AddUser(QWidget *parent)
     ui->setupUi(this);
 
     // 去掉对话框上的问号
-    setWindowFlag(Qt::WindowContextHelpButtonHint, false);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     // 禁用调整窗口大小
-    setWindowFlag(Qt::MSWindowsFixedSizeDialogHint, true);
+    setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 }
 
 AddUser::~AddUser()

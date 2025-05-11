@@ -10,7 +10,7 @@ set(SRC_FILES
 
 # 生成链接库
 add_library(${module_name} ${SRC_FILES})
-target_link_libraries(${module_name} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${module_name} PRIVATE ${QtWidgets})
 
 # 传递链接库头文件 -> 调用处
 ## 1.生成库的模块，调用target_include_directories()，将头文件路径和库绑定

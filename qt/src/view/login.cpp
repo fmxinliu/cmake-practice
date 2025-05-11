@@ -12,10 +12,10 @@ Login::Login(QWidget *parent)
     ui->setupUi(this);
 
     // 禁用最大化按钮
-    setWindowFlag(Qt::WindowMaximizeButtonHint, false);
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
 
     // 禁用调整窗口大小
-    setWindowFlag(Qt::MSWindowsFixedSizeDialogHint, true);
+    setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 }
 
 Login::~Login()

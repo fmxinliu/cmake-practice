@@ -8,5 +8,5 @@ set(SRC_FILES
 
 # 生成链接库
 add_library(${module_name} ${SRC_FILES})
-target_link_libraries(${module_name} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets utils)
+target_link_libraries(${module_name} PRIVATE ${QtWidgets} utils)
 target_include_directories(${module_name} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

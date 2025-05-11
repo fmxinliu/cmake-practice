@@ -1,6 +1,6 @@
-@ set cmake_exe=C:\DevEnv\CMake\bin\cmake.exe
-@ set cpack_exe=C:\DevEnv\CMake\bin\cpack.exe
-@ set ctest_exe=C:\DevEnv\CMake\bin\ctest.exe
+@ set cmake_exe=C:\DevEnv\CMake\3.24\bin\cmake.exe
+@ set cpack_exe=C:\DevEnv\CMake\3.24\bin\cpack.exe
+@ set ctest_exe=C:\DevEnv\CMake\3.24\bin\ctest.exe
 
 @ set vs_build_exe=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe
 @ set vs_generator_x86="Visual Studio 17 2022" -A win32

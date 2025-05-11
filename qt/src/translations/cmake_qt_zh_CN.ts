@@ -149,38 +149,38 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../utils/namingrules.cpp" line="8"/>
+        <location filename="../utils/namingrules.cpp" line="13"/>
         <source>Username is empty</source>
         <translation>用户名不能为空</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="14"/>
+        <location filename="../utils/namingrules.cpp" line="19"/>
         <source>Username is all white characters</source>
         <translation>用户名不能为空白</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="20"/>
+        <location filename="../utils/namingrules.cpp" line="25"/>
         <source>Username start with white character</source>
         <translation>用户名不能以空白字符开头</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="26"/>
+        <location filename="../utils/namingrules.cpp" line="31"/>
         <source>Username end with white character</source>
         <translation>用户名不能以空白字符结尾</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="33"/>
+        <location filename="../utils/namingrules.cpp" line="43"/>
         <source>Username contains not allow character</source>
         <translation>用户名包含不允许的字符</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="49"/>
+        <location filename="../utils/namingrules.cpp" line="59"/>
         <source>Password length must be between %1-%2 
 characters</source>
         <translation>密码长度必须在%1-%2之间</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="63"/>
+        <location filename="../utils/namingrules.cpp" line="77"/>
         <source>Password must contain letter(s) and digit(s)</source>
         <translation>密码必须包含字母和数字两种字符</translation>
     </message>
