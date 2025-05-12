@@ -12,19 +12,29 @@ message(STATUS "Find Qt6...")
 find_package(Qt6 COMPONENTS Core QUIET)
 
 if(Qt6_FOUND)
+    message(STATUS "Qt6 found at: ${Qt6_DIR}")
     message(STATUS "Using Qt6")
     set(QT_VERSION_MAJOR 6)
 else()
     message(STATUS "Find Qt5...")
     find_package(Qt5 COMPONENTS Core QUIET)
-    
     if(Qt5_FOUND)
+        message(STATUS "Qt5 found at: ${Qt5_DIR}")
+    else(Qt5_FOUND)
+        find_package(Qt5Core QUIET)
+        if(Qt5Core_FOUND)
+            message(STATUS "Qt5Core found at: ${Qt5Core_DIR}")
+            set(Qt5_0_FOUND True)
+        endif(Qt5Core_FOUND)
+    endif(Qt5_FOUND)
+
+    if(Qt5_FOUND OR Qt5_0_FOUND)
         message(STATUS "Using Qt5")
         set(QT_VERSION_MAJOR 5)
     else()
         message(STATUS "Find Qt4...")
         find_package(Qt4 REQUIRED)
-        message(STATUS "Using Qt4")
+        message(STATUS "Using Qt4 (${QTVERSION})")
         set(QT_VERSION_MAJOR 4)
     endif()
 endif()
@@ -37,11 +47,23 @@ if(Qt4_FOUND)
 else()
     set(Qt Qt${QT_VERSION_MAJOR}::)
     set(QtWidgets ${Qt}Widgets)
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
+
+    set(Qt_FIND_COMPONENTS
         Widgets
-        LinguistTools 
+        LinguistTools
         Test
     )
+
+    if(Qt5_0_FOUND)
+        foreach(module ${Qt_FIND_COMPONENTS})
+            find_package(Qt5${module} REQUIRED)
+            include_directories(${Qt5${module}_INCLUDE_DIRS})
+        endforeach()
+    else()
+        find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${Qt_FIND_COMPONENTS})
+    endif()
+
+    unset(Qt_FIND_COMPONENTS)
 endif()
 
 # 启用CTest（必须在顶层 CMakeLists.txt 中调用）

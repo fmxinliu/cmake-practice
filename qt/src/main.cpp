@@ -29,13 +29,8 @@ int main(int argc, char *argv[])
     Login login;
     MainWindow w;
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    QObject::connect(&login, &Login::login, &w, &MainWindow::show);
-    QObject::connect(&login, &Login::exit, &app, &QApplication::quit);
-#else
     QObject::connect(&login, SIGNAL(login()), &w, SLOT(show()));
     QObject::connect(&login, SIGNAL(exit()), &app, SLOT(quit()));
-#endif
 
     login.show();
 
