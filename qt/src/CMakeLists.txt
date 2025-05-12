@@ -41,4 +41,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${QtWidgets} users config)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/view)
 
 # 去掉 console 控制台
-# set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)

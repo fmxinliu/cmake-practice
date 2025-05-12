@@ -70,4 +70,5 @@ endif()
 enable_testing()
 
 # 包含自定义cmake宏
+include("${CMAKE_CURRENT_LIST_DIR}/QtConfigExtras.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/QtMacros.cmake")
