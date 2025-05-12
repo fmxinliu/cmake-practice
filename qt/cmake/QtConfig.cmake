@@ -50,14 +50,15 @@ else()
 
     set(Qt_FIND_COMPONENTS
         Widgets
-        LinguistTools
+        Gui
         Test
     )
 
     if(Qt5_0_FOUND)
         foreach(module ${Qt_FIND_COMPONENTS})
             find_package(Qt5${module} REQUIRED)
-            include_directories(${Qt5${module}_INCLUDE_DIRS})
+            set_property(TARGET Qt5::${module} PROPERTY
+                INTERFACE_INCLUDE_DIRECTORIES ${Qt5${module}_INCLUDE_DIRS})
         endforeach()
     else()
         find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${Qt_FIND_COMPONENTS})
