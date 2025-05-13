@@ -150,42 +150,42 @@ different</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../utils/namingrules.cpp" line="13"/>
+        <location filename="../utils/namingrules.cpp" line="10"/>
         <source>Username is empty</source>
         <translation>The username cannot be empty</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="19"/>
+        <location filename="../utils/namingrules.cpp" line="16"/>
         <source>Username is all white characters</source>
         <translation>The username cannot be blank</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="25"/>
+        <location filename="../utils/namingrules.cpp" line="23"/>
         <source>Username start with white character</source>
         <translation>The username cannot start with
 blank character</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="31"/>
+        <location filename="../utils/namingrules.cpp" line="30"/>
         <source>Username end with white character</source>
         <translation>The username cannot end with
 blank character</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="43"/>
+        <location filename="../utils/namingrules.cpp" line="37"/>
         <source>Username contains not allow character</source>
         <translation>Username contains not allow 
 character(s)</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="59"/>
+        <location filename="../utils/namingrules.cpp" line="53"/>
         <source>Password length must be between %1-%2 
 characters</source>
         <translation>Password length must be between %1-%2 
 characters</translation>
     </message>
     <message>
-        <location filename="../utils/namingrules.cpp" line="77"/>
+        <location filename="../utils/namingrules.cpp" line="66"/>
         <source>Password must contain letter(s) and digit(s)</source>
         <translation>Password must contain letter(s) and
 digit(s)</translation>

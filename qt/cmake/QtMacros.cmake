@@ -76,7 +76,7 @@ function(CREATE_QRC_FILE _qrc_file _qrc_prefix)
     file(WRITE "${_qrc_abs_file}" ${_qrc_file_content})
 endfunction()
 
-function(ADD_QTEST _test_name _test_sources _test_lib)
+function(ADD_QTEST _test_name _test_sources)
     if(IS_ABSOLUTE ${TEST_BIN_DIR})
         set(_test_working_dir ${TEST_BIN_DIR})
     else()
@@ -84,7 +84,7 @@ function(ADD_QTEST _test_name _test_sources _test_lib)
     endif()
 
     add_executable(${_test_name} ${_test_sources})
-    target_link_libraries(${_test_name} PRIVATE ${Qt}Test ${_test_lib})
+    target_link_libraries(${_test_name} PRIVATE ${Qt}Test ${ARGN})
     set_target_properties(${_test_name} PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${_test_working_dir}"
     )

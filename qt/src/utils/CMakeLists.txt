@@ -6,6 +6,8 @@ set(SRC_FILES
     configsaver.h
     namingrules.cpp
     namingrules.h
+    common.cpp
+    common.h
 )
 
 # 生成链接库

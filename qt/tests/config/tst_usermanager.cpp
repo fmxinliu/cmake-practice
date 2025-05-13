@@ -1,10 +1,6 @@
 #include <QTest>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-#include <QRandomGenerator>
-#else
-#include <QTime>
-#endif
 #include "usermanager.h"
+#include "common.h"
 
 class tst_UserManager : public QObject
 {
@@ -42,38 +38,10 @@ void tst_UserManager::addUser()
     }
 }
 
-
-static QString generateRandomPassword(int num)
-{
-    const QString possibleCharacters(
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "abcdefghijklmnopqrstuvwxyz"
-        "0123456789");
-
-    QString randomString;
-
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    for (int i = 0; i < num; ++i)
-    {
-        int index = QRandomGenerator::global()->bounded(possibleCharacters.length());
-        randomString.append(possibleCharacters.at(index));
-    }
-#else
-    qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime())); // 初始化随机种子
-    for (int i = 0; i < num; ++i)
-    {
-        int index = qrand() % possibleCharacters.length();
-        randomString.append(possibleCharacters.at(index));
-    }
-#endif
-
-    return randomString;
-}
-
 void tst_UserManager::modifyUser()
 {
     QString username = "test_user";
-    QString password = generateRandomPassword(6);
+    QString password = Common::generateRandomPassword(6);
     if (!UserManager::instance()->hasUser(username))
     {
         UserManager::instance()->addUser(username, "test_user");

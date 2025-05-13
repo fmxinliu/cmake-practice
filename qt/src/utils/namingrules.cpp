@@ -1,15 +1,12 @@
 #include "namingrules.h"
 #include <QObject>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#include <QRegularExpression>
-#else
-#include <QRegExp>
-#endif
+#include "common.h"
 
 bool NamingRules::isValidUsername(const QString &username)
 {
     // 检查是否为空
-    if (username.isEmpty()) {
+    if (username.isEmpty())
+    {
         m_message = QObject::tr("Username is empty");
         return false;
     }
@@ -21,25 +18,22 @@ bool NamingRules::isValidUsername(const QString &username)
     }
 
     // 检查是否以空格开头
-    if (username.startsWith(' ')) {
+    if (username.startsWith(' '))
+    {
         m_message = QObject::tr("Username start with white character");
         return false;
     }
 
     // 检查是否以空格结尾
-    if (username.endsWith(' ')) {
+    if (username.endsWith(' '))
+    {
         m_message = QObject::tr("Username end with white character");
         return false;
     }
 
     // 只允许字母、数字、下划线和空格
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    QRegularExpression regex("^[a-zA-Z0-9_ ]+$");
-    if (!regex.match(username).hasMatch()) {
-#else
-    QRegExp regex("^[a-zA-Z0-9_ ]*$");
-    if (!regex.exactMatch(username)) {
-#endif
+    if (!Common::regularMatched(username, "^[a-zA-Z0-9_ ]+$"))
+    {
         m_message = QObject::tr("Username contains not allow character");
         return false;
     }
@@ -62,12 +56,7 @@ bool NamingRules::isValidPassword(const QString &password)
 
     // 必须包含字母、数字
     bool isValid = false;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    QRegularExpression regex("^(?=.*[A-Za-z])(?=.*\\d).+$");
-    if (regex.match(password).hasMatch())
-#else
-    if (password.contains(QRegExp("[0-9]{1,}")) && password.contains(QRegExp("[a-zA-Z]{1,}")))
-#endif
+    if (Common::regularContains(password, QStringList() << "[a-zA-Z]" << "\\d"))
     {
         isValid = true;
         m_message.clear();
