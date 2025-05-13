@@ -26,6 +26,7 @@ private Q_SLOTS:
 private:
     void init_test_data();
     int languageChangeEventCounter;
+    QString passwordTextForChinese;
 };
 
 
@@ -33,6 +34,12 @@ tst_TranslationsQrc::tst_TranslationsQrc()
     : languageChangeEventCounter(0)
 {
     qApp->installEventFilter(this);
+
+#if defined(Q_OS_WIN) && _MSC_VER < 1922
+    passwordTextForChinese = QString::fromUtf8("\xe5\xaf\x86 \xe7\xa0\x81");
+#else
+    passwordTextForChinese = "密 码";
+#endif
 }
 
 tst_TranslationsQrc::~tst_TranslationsQrc()
@@ -54,7 +61,7 @@ void tst_TranslationsQrc::init_test_data()
     QTest::addColumn<QString>("sourceText");
     QTest::addColumn<QString>("translationText");
 
-    // QTest::newRow("zh_CN") << ":/translations/cmake_qt_zh_CN.qm" << "AddUser" << "Password" << "密 码";
+    QTest::newRow("zh_CN") << ":/translations/cmake_qt_zh_CN.qm" << "AddUser" << "Password" << passwordTextForChinese;
     QTest::newRow("en_US") << ":/translations/cmake_qt_en_US.qm" << "AddUser" << "Password" << "Password";
 }
 
@@ -116,7 +123,7 @@ void tst_TranslationsQrc::tst_install_translation()
     QCOMPARE(languageChangeEventCounter, 5);
 
     // 卸载
-   qApp->removeTranslator(translator);
+    qApp->removeTranslator(translator);
     qApp->sendPostedEvents();
     qApp->sendPostedEvents();
     QCOMPARE(languageChangeEventCounter, 6);
