@@ -3,6 +3,7 @@ set(IMG_QRC_FILE "${CMAKE_CURRENT_BINARY_DIR}/images.qrc") # 修改qrc生成位�
 create_qrc_file(IMG_QRC_FILE "/images" "${IMG_FILE}")
 add_qtest(tst_images_qrc "tst_images_qrc.cpp;${IMG_QRC_FILE}" ${Qt}Gui)
 target_compile_definitions(tst_images_qrc PRIVATE APP_ICON_PATH="${IMG_FILE}") # 传递变量，供代码使用
+target_compile_definitions(tst_images_qrc PRIVATE QT_GUI_LIB)
 
 
 set(TS_FILES
