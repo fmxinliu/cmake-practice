@@ -3,6 +3,7 @@
 
 #include <QDateTime>
 #include <QThread>
+#include <QThreadStorage>
 
 class RandomGenerator
 {
@@ -18,9 +19,16 @@ public:
     }
 
 private:
-    static qint32 generate()
+    static quint32 generate()
     {// 伪随机数生成器（线性同余法）
-        static quint32 seed = QDateTime::currentMSecsSinceEpoch() ^ (quint32(QThread::currentThreadId()) << 16);
+        static QThreadStorage<quint32 *> seedStorage;
+        if (!seedStorage.hasLocalData())
+        {// 初始化线程的 seed
+            quint32 seed = QDateTime::currentMSecsSinceEpoch() ^ (quintptr(QThread::currentThreadId()) << 16);
+            seedStorage.setLocalData(new quint32(seed));
+        }
+
+        quint32 &seed = *seedStorage.localData();
         seed = 1664525 * seed + 1013904223;
         return seed;
     }
