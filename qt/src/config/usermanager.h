@@ -18,6 +18,7 @@ public Q_SLOTS:
     bool addUser(const QString &username, const QString &password);
     bool modifyUser(const QString &username, const QString &password);
     bool hasUser(const QString &username);
+    bool delUser(const QString &username);
 
 private:
     UserManager(QObject *parent=Q_NULLPTR);

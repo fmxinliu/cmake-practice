@@ -1,8 +1,8 @@
 #include "common.h"
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 #include <QRandomGenerator>
 #else
-#include <QTime>
+#include "randomgenerator.h"
 #endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
@@ -11,7 +11,14 @@
 #include <QRegExp>
 #endif
 
-QString Common::generateRandomPassword(int num)
+#include <QCoreApplication>
+
+QString Common::configFilepath()
+{
+    return QCoreApplication::applicationDirPath() + "/config.ini";
+}
+
+QString Common::generateRandomStr(int num)
 {
     const QString possibleCharacters(
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -20,20 +27,15 @@ QString Common::generateRandomPassword(int num)
 
     QString randomString;
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     for (int i = 0; i < num; ++i)
     {
-        int index = QRandomGenerator::global()->bounded(possibleCharacters.length());
-        randomString.append(possibleCharacters.at(index));
-    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+        uint index = QRandomGenerator::global()->bounded(possibleCharacters.length());
 #else
-    qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime())); // 初始化随机种子
-    for (int i = 0; i < num; ++i)
-    {
-        int index = qrand() % possibleCharacters.length();
+        uint index = RandomGenerator::bounded(0U, possibleCharacters.length());
+#endif
         randomString.append(possibleCharacters.at(index));
     }
-#endif
 
     return randomString;
 }

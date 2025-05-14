@@ -13,6 +13,7 @@ public:
     QString load(const QString &key);
 
     bool hasKey(const QString &key);
+    bool delKey(const QString &key);
 
 private:
     QString m_section;

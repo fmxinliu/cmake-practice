@@ -1,5 +1,6 @@
 #include "usermanager.h"
 #include "configsaver.h"
+#include "common.h"
 
 UserManager *UserManager::instance()
 {
@@ -15,7 +16,7 @@ UserManager::~UserManager()
 UserManager::UserManager(QObject *parent)
     : QObject(parent)
 {
-    m_userconfig = new ConfigSaver("config.ini", "users");
+    m_userconfig = new ConfigSaver(Common::configFilepath(), "users");
     m_userconfig->save("admin", "admin");
     m_userconfig->save("user", "123");
 }
@@ -49,3 +50,10 @@ bool UserManager::hasUser(const QString &username)
     return m_userconfig->hasKey(username);
 }
 
+bool UserManager::delUser(const QString &username)
+{
+    if (!hasUser(username))
+        return false;
+
+    return m_userconfig->delKey(username);
+}

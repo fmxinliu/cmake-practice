@@ -33,3 +33,10 @@ bool ConfigSaver::hasKey(const QString &key)
     QSettings iniAccess(m_filepath, QSettings::IniFormat);
     return iniAccess.contains(m_section + "/" + key);
 }
+
+bool ConfigSaver::delKey(const QString &key)
+{
+    QSettings iniAccess(m_filepath, QSettings::IniFormat);
+    iniAccess.remove(m_section + "/" + key);
+    return !iniAccess.contains(m_section + "/" + key);
+}

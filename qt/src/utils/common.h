@@ -6,7 +6,8 @@
 class Common
 {
 public:
-    static QString generateRandomPassword(int num);
+    static QString configFilepath();
+    static QString generateRandomStr(int num);
     static bool regularMatched(const QString &str, const QString &pattern);
     static bool regularContains(const QString &str, const QStringList &patterns);
 };
