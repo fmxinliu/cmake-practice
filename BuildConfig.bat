@@ -2,9 +2,9 @@
 @ set cpack_exe=C:\DevEnv\CMake\3.24\bin\cpack.exe
 @ set ctest_exe=C:\DevEnv\CMake\3.24\bin\ctest.exe
 
-@ set vs_build_exe=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe
-@ set vs_generator_x86="Visual Studio 17 2022" -A win32
-@ set vs_generator_x64="Visual Studio 17 2022"
+@ set vs_build_exe=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.com
+@ set vs_generator_x86="Visual Studio 17 2022" -A Win32
+@ set vs_generator_x64="Visual Studio 17 2022" -A x64
 
 @ set mingw_bin_dir=C:\DevEnv\mingw32\bin
 @ set mingw_make_exe=mingw32-make.exe
@@ -17,7 +17,10 @@
 
 @ set dumpbin_exe=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\Hostx86\x86\dumpbin.exe
 
-@ set qt_vs_bin_dir=C:\DevEnv\Qt\5.9.9\5.9.9\msvc2017_64\bin
 @ set qt_mingw_bin_dir=C:\DevEnv\Qt\5.9.9\5.9.9\mingw53_32\bin
 @ set qt_mingw_tools_dir=C:\DevEnv\Qt\5.9.9\Tools\mingw530_32\bin
 @ set qt_mingw_make_exe=mingw32-make.exe
+
+@ set qt_vs_bin_dir=C:\DevEnv\Qt\5.9.9\5.9.9\msvc2017_64\bin
+@ set qt_vs_build_exe=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.com
+@ set qt_vs_generator="Visual Studio 17 2022"

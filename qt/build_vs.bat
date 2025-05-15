@@ -14,14 +14,14 @@
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 生成VS工程
-@ "%cmake_exe%" .. -G %vs_generator_x64% 
+@ "%cmake_exe%" .. -G %qt_vs_generator% 
 @ if %errorlevel% neq 0 @ goto :end
 
 @REM 设置VS工程build类型
 @ set BUILD_TYPE=Release
 
 @rem 编译
-@ "%vs_build_exe%" cmake_qt.sln /Rebuild %BUILD_TYPE%
+@ "%qt_vs_build_exe%" cmake_qt.sln /Rebuild %BUILD_TYPE%
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行单元测试
