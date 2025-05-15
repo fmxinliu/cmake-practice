@@ -30,9 +30,9 @@ QString Common::generateRandomStr(int num)
     for (int i = 0; i < num; ++i)
     {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-        quint32 index = QRandomGenerator::global()->bounded(possibleCharacters.length());
+        int index = QRandomGenerator::global()->bounded(possibleCharacters.length());
 #else
-        quint32 index = RandomGenerator::bounded(0U, possibleCharacters.length());
+        int index = RandomGenerator::bounded(0U, possibleCharacters.length());
 #endif
         randomString.append(possibleCharacters.at(index));
     }
