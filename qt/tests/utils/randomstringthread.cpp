@@ -45,10 +45,10 @@ int RandomStringThread::startTest(int numThreads, int numIterationsPerThread)
     }
 
     // 等待所有线程完成
-    Q_FOREACH(QThread *thread, threads)
+    for(int i = 0; i < threads.size(); i++)
     {
-        thread->wait();
-        delete thread;
+        threads.at(i)->wait();
+        delete threads.at(i);
     }
 
     // 检查是否有重复的字符串

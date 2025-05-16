@@ -55,9 +55,9 @@ bool Common::regularContains(const QString &str, const QStringList &patterns)
 {
     #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QStringList patternList;
-        Q_FOREACH(const QString &pattern, patterns)
+        for(int i = 0; i < patterns.size(); i++)
         {
-            patternList.append(QString("(?=.*%1)").arg(pattern));
+            patternList.append(QString("(?=.*%1)").arg(patterns.at(i)));
         }
         patternList.insert(0, "^");
         patternList.append(".+$");
@@ -65,9 +65,9 @@ bool Common::regularContains(const QString &str, const QStringList &patterns)
         QRegularExpression regex(patternList.join(""));
         return regex.match(str).hasMatch();
     #else
-        Q_FOREACH(const QString &pattern, patterns)
+        for(int i = 0; i < patterns.size(); i++)
         {
-            if (!str.contains(QRegExp(pattern)))
+            if (!str.contains(QRegExp(patterns.at(i))))
             {
                 return false;
             }
