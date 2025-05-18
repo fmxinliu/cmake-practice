@@ -1,9 +1,9 @@
 # cmake-qt
-演示通过 cmake 管理 qt 工程，实现项目开发、单元测试、多语言翻译。
+演示通过 cmake 管理 qt 工程，实现项目开发、单元测试、多语言翻译等。
 
 | Qt     | MinGW    | MSVC     | x86_64-linux-gnu |
 |:------:|:--------:|:--------:|:--------:|
-| 4.8.7  |          | &#x2705; |          |
+| 4.8.7  |          | &#x2705; | &#x2705; |
 | 5.0.0  |          | &#x2705; | &#x2705; |
 | 5.1.0  |          | &#x2705; | &#x2705; |
 | 5.9.9  | &#x2705; | &#x2705; | &#x2705; |
@@ -85,7 +85,7 @@ PATH=~/Qt5.9.9/5.9.9/gcc_64/bin:$PATH
           if (ret)
           {
                qDebug() << "Success to load translation file: " << qmPath;
-               Q_ASSERT(qApp->installTranslator(translator));
+               qApp->installTranslator(translator);
           }
           else
           {
@@ -161,4 +161,87 @@ D:/
 
     </qresource>
 </RCC>
+```
+
+## Ubuntu 20.04 编译 Qt4.8.7
+
+### 安装 gcc-4.8/g++-4.8
+```
+sudo apt-get update
+
+wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-4.8/g++-4.8_4.8.5-4ubuntu8_amd64.deb 
+wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-4.8/libstdc++-4.8-dev_4.8.5-4ubuntu8_amd64.deb 
+wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-4.8/gcc-4.8-base_4.8.5-4ubuntu8_amd64.deb 
+wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-4.8/gcc-4.8_4.8.5-4ubuntu8_amd64.deb 
+wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-4.8/libgcc-4.8-dev_4.8.5-4ubuntu8_amd64.deb 
+wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-4.8/cpp-4.8_4.8.5-4ubuntu8_amd64.deb 
+wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-4.8/libasan0_4.8.5-4ubuntu8_amd64.deb  
+
+sudo apt-get install \
+./gcc-4.8_4.8.5-4ubuntu8_amd64.deb \
+./gcc-4.8-base_4.8.5-4ubuntu8_amd64.deb \
+./libstdc++-4.8-dev_4.8.5-4ubuntu8_amd64.deb \
+./cpp-4.8_4.8.5-4ubuntu8_amd64.deb \
+./libgcc-4.8-dev_4.8.5-4ubuntu8_amd64.deb \
+./libasan0_4.8.5-4ubuntu8_amd64.deb \
+./g++-4.8_4.8.5-4ubuntu8_amd64.deb
+```
+
+### 通过 update-alternatives 切换 gcc-4.8/g++-4.8
+```
+# 查看安装的 gcc
+ls -l /usr/bin/gcc*
+
+# 配置多版本
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 200
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 200
+
+# 切换 
+sudo update-alternatives --config gcc
+sudo update-alternatives --config g++
+
+# 查看版本
+gcc -v
+g++ -v
+```
+
+### 下载、解压、编译 Qt4.8.7
+```
+wget https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.tar.gz
+tar -zxvf qt-everywhere-opensource-src-4.8.7.tar.gz
+cd qt-everywhere-opensource-src-4.8.7
+
+sudo apt-get install libxtst-dev libfontconfig1-dev
+
+./configure \
+-prefix /home/dev/Qt/4.8.7/gcc_64 \
+-opensource -confirm-license \
+-nomake examples -nomake demos -nomake docs \
+-no-qt3support -no-opengl -no-webkit \
+-fontconfig
+
+make && make install
+```
+
+### 通过 update-alternatives 还原 gcc-9/g++-9
+```
+sudo update-alternatives --config gcc
+sudo update-alternatives --config g++
+```
+
+### 配置全局 Qt4.8.7 程序字体
+```
+# 安装字体
+sudo apt-get install fonts-wqy-microhei
+
+# 刷新字体缓存
+sudo fc-cache -fv
+
+# 列出已安装的中文字体
+fc-list :lang=zh | sort
+
+# 配置 Qt 程序字体：WenQuanYi Micro Hei
+/home/dev/Qt/4.8.7/gcc_64/bin/qtconfig
 ```

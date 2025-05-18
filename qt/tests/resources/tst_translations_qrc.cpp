@@ -35,7 +35,7 @@ tst_TranslationsQrc::tst_TranslationsQrc()
 {
     qApp->installEventFilter(this);
 
-#if defined(Q_OS_WIN) && _MSC_VER < 1922
+#if (defined(Q_OS_WIN) && _MSC_VER < 1922) || (defined(Q_OS_UNIX) && QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     passwordTextForChinese = QString::fromUtf8("\xe5\xaf\x86 \xe7\xa0\x81");
 #else
     passwordTextForChinese = "密 码";

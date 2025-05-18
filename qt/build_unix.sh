@@ -20,5 +20,4 @@ cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=$BUILD_TYPE || exit
 make || exit
 
 # 测试
-export CTEST_OUTPUT_ON_FAILURE=1
-make test && src/cmake_qt
+ctest --output-on-failure && src/cmake_qt

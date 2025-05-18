@@ -25,8 +25,7 @@
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行单元测试
-@ set CTEST_OUTPUT_ON_FAILURE=1
-@ "%qt_mingw_make_exe%" test
+@ "%ctest_exe%" --output-on-failure
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行主程序

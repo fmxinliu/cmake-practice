@@ -25,8 +25,7 @@
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行单元测试
-@ set CTEST_OUTPUT_ON_FAILURE=1
-@ "%ctest_exe%" -C %BUILD_TYPE%
+@ "%ctest_exe%" -C %BUILD_TYPE% --output-on-failure
 @ if %errorlevel% neq 0 @ goto :end
 
 @rem 运行主程序
